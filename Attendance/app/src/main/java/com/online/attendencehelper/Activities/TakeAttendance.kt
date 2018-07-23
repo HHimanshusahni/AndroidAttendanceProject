@@ -4,6 +4,8 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import android.widget.ArrayAdapter
+import android.widget.Spinner
 import android.widget.Toast
 import com.online.attendencehelper.R
 import com.online.attendencehelper.adapters.AttendanceRecyclerAdapter
@@ -12,17 +14,22 @@ import com.online.attendencehelper.datetime.DateTime
 import com.online.attendencehelper.datetime.TimePickerFragment
 import com.online.attendencehelper.db.AttendanceTableHelper
 import com.online.attendencehelper.db.tables.AttendanceTable
+import com.online.attendencehelper.db.tables.SubjectTable
+import com.online.attendencehelper.db.tables.SubjectTableHelper
 import com.online.attendencehelper.models.Attendance
+import com.online.attendencehelper.models.Subject
 import kotlinx.android.synthetic.main.activity_take_attendance.*
 
 class TakeAttendance : AppCompatActivity() {
 
     var attendance = ArrayList<Attendance>()
-
     lateinit var attendanceAdapter : AttendanceRecyclerAdapter
 
     lateinit var actIntent :Intent
     val TAG : String = "TakeAttendance"
+
+
+    var subjectList = ArrayList<String>()
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
@@ -104,6 +111,9 @@ class TakeAttendance : AppCompatActivity() {
             Toast.makeText(this,"Attendance Submitted",Toast.LENGTH_SHORT).show()
         }
 
+
+            listSubjects()
+
     }
 
     private fun createArrayListAttendance(attendance: ArrayList<Attendance>,Number:Int) :ArrayList<Attendance>{
@@ -121,6 +131,23 @@ class TakeAttendance : AppCompatActivity() {
             )
         }
         return attendance
+    }
+    fun listSubjects(){
+
+        val dbsubject = SubjectTableHelper(this).readableDatabase
+
+        subjectList = SubjectTable.getAllSubjectName(dbsubject)
+        val spinner : Spinner = findViewById(R.id.spinnerSubject)
+
+        val adapter = ArrayAdapter(
+                this,
+                android.R.layout.simple_list_item_1,
+                android.R.id.text1,
+                subjectList
+        )
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinner.setAdapter(adapter)
+
     }
 
 }

@@ -41,7 +41,6 @@ class SubjectTable{
                             null
 
             )
-
             val subjectidCol = cursor.getColumnIndex( Columns.SUBJECTID)
             val subjectnameidCol = cursor.getColumnIndex( Columns.SUBJECTNAME)
             val yearidCol = cursor.getColumnIndex( Columns.YEAR)
@@ -60,9 +59,29 @@ class SubjectTable{
             }
             return subjects
         }
+
+        fun getAllSubjectName(db: SQLiteDatabase):ArrayList<String>{
+            val subjectlist = ArrayList<String>()
+            val cursor = db.query(
+                    TABLE_NAME,
+                    arrayOf(Columns.SUBJECTNAME),
+                    null,null,null,null,Columns.SUBJECTNAME
+
+            )
+            val subjectnameidCol = cursor.getColumnIndex( Columns.SUBJECTNAME)
+            while (cursor.moveToNext()) {
+                val subjectname  = cursor.getString(subjectnameidCol)
+
+                subjectlist.add(subjectname)
+            }
+
+            return subjectlist
+
+        }
+
 //        fun getsubjectname(subid: Int){
 //            "SELECT ${Columns.subjectname} from ${TABLE_NAME} where ${Columns.SUBJECTID}==${subid}"
-//        }
+//         }
         // update subject to be written
 
         object Columns{
