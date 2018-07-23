@@ -1,7 +1,8 @@
-package com.online.attendencehelper
+package com.online.attendencehelper.Activities
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.online.attendencehelper.R
 
 class MySchedule : AppCompatActivity() {
 

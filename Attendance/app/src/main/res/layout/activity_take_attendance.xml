@@ -5,16 +5,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".TakeAttendance">
+    tools:context=".Activities.TakeAttendance"
+    >
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:background="#808080">
         <EditText
             android:hint="Subject"
             android:id="@+id/etSubject"
             android:layout_weight="3"
             android:layout_width="0dp"
+            android:textCursorDrawable="@null"
+            android:backgroundTint="#000000"
             android:layout_height="wrap_content" />
         <Button
             android:hint="DATE"
@@ -31,7 +35,7 @@
 
     </LinearLayout>
     <LinearLayout
-
+        android:background="#808080"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <Button
@@ -59,7 +63,8 @@
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    >
     <TextView
         android:text="ROLL No"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"

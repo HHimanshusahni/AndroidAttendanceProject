@@ -1,13 +1,12 @@
-package com.online.attendencehelper
+package com.online.attendencehelper.Activities
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.ArrayAdapter
+import com.online.attendencehelper.R
 import com.online.attendencehelper.db.AttendanceTableHelper
 import com.online.attendencehelper.db.tables.AttendanceTable
 import kotlinx.android.synthetic.main.activity_show_attendance_report.*
-import kotlinx.android.synthetic.main.activity_take_attendance.*
 
 class ShowAttendanceReport : AppCompatActivity() {
 

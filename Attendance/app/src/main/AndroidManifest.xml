@@ -14,7 +14,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".Activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -25,16 +25,20 @@
             android:name=".LoginActivity"
             android:label="@string/title_activity_login" />
         <activity android:name=".AddStudent" />
-        <activity android:name=".MySchedule" />
-        <activity android:name=".AddSubject" />
-        <activity android:name=".TakeAttendance" />
-        <activity android:name=".ShowAttendanceReport" />
+        <activity android:name=".Activities.MySchedule" />
+        <activity android:name=".Activities.AddSubject" />
+        <activity android:name=".Activities.TakeAttendance" />
+        <activity android:name=".Activities.ShowAttendanceReport" />
         <activity
             android:name=".NavigationDrawer"
             android:label="@string/title_activity_navigation_drawer"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ShowSubject" />
-        <activity android:name=".Drawer"></activity>
+        <activity android:name=".Activities.ShowSubject" />
+        <activity android:name=".Drawer" />
+        <activity
+            android:name=".Activities.navActi"
+            android:label="@string/title_activity_nav"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

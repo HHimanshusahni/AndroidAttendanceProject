@@ -1,11 +1,11 @@
-package com.online.attendencehelper
+package com.online.attendencehelper.Activities
 
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
 import android.widget.Toast
+import com.online.attendencehelper.R
 import com.online.attendencehelper.adapters.AttendanceRecyclerAdapter
 import com.online.attendencehelper.datetime.DatePickerFragment
 import com.online.attendencehelper.datetime.DateTime

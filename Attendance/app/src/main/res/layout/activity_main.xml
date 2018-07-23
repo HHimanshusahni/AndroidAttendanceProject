@@ -3,12 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    tools:context=".MainActivity"
-    android:layout_marginTop="50dp"
-    android:layout_marginRight="15dp"
-    android:layout_marginLeft="15dp"
-    android:orientation="vertical">
+    android:layout_height="match_parent"
+
+    android:orientation="vertical"
+    android:background="#808080">
 
     <!--<LinearLayout-->
         <!--android:layout_width="match_parent"-->
@@ -31,40 +29,69 @@
     <!--</LinearLayout>-->
 
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="20sp">
+            <Button
+                android:text="Take \n Attendance"
+                android:id="@+id/btnAttendance"
+                android:layout_marginRight="40dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/round_button"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline"
+                android:textStyle="bold"
+                />
+
+            <Button
+                android:id="@+id/btnAddSubject"
+                android:text="Add \nSubject"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/round_button"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline"
+                android:textStyle="bold"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="20sp"
+            >
+            <Button
+                android:text="Show \nSubjects"
+                android:id="@+id/btnShowSubject"
+                android:layout_marginRight="40sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/round_button"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline"
+                android:textStyle="bold"/>
+
+            <Button
+                android:text="My \nSchedule"
+                android:id="@+id/btnShowSchedule"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/round_button"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline"
+                android:textStyle="bold"
+                />
+        </LinearLayout>
+
 
         <Button
-            android:text="Take Attendance"
-            android:textSize="30sp"
-            android:id="@+id/btnAttendance"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <Button
-            android:id="@+id/btnAddSubject"
-            android:text="Add Subject"
-            android:textSize="30sp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-        <Button
-            android:text="Show Subjects"
-            android:id="@+id/btnShowSubject"
-            android:textSize="30sp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <Button
-            android:text="My Schedule"
-            android:id="@+id/btnShowSchedule"
-            android:textSize="30sp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <Button
-            android:text="Attendance Report"
+            android:text="Report"
             android:id="@+id/btnShowAttendance"
-            android:textSize="30sp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:background="@drawable/round_button"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline"
+            android:textStyle="bold"/>
 
 
 

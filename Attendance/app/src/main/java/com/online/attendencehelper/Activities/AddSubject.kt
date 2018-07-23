@@ -1,21 +1,18 @@
-package com.online.attendencehelper
+package com.online.attendencehelper.Activities
 
 
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.*
-import com.online.attendencehelper.datetime.DatePickerFragment
+import com.online.attendencehelper.R
 import com.online.attendencehelper.datetime.DateTime
 import com.online.attendencehelper.datetime.TimePickerFragment
 import com.online.attendencehelper.db.AttendanceTableHelper
 import com.online.attendencehelper.db.tables.SubjectTable
-import com.online.attendencehelper.db.tables.SubjectTableHelper
-import com.online.attendencehelper.models.Attendance
 import com.online.attendencehelper.models.Subject
 
 import kotlinx.android.synthetic.main.activity_add_subject.*
-import kotlinx.android.synthetic.main.activity_take_attendance.*
 
 class AddSubject : AppCompatActivity() {
 

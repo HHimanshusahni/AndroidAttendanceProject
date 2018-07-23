@@ -1,14 +1,12 @@
-package com.online.attendencehelper
+package com.online.attendencehelper.Activities
 
-import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
+import com.online.attendencehelper.R
 import com.online.attendencehelper.db.tables.SubjectTable
 import com.online.attendencehelper.db.tables.SubjectTableHelper
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_show_subject.*
-import javax.security.auth.Subject
 
 class ShowSubject : AppCompatActivity() {
 

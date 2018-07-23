@@ -32,4 +32,5 @@
         <item>Saturday</item>
         <item>Sunday</item>
     </string-array>
+    <string name="title_activity_nav">navActi</string>
 </resources>

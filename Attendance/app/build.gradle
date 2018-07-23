@@ -7,7 +7,7 @@ apply plugin: 'kotlin-android-extensions'
 android {
     compileSdkVersion 27
     defaultConfig {
-        applicationId "com.online.attendencehelper"
+        applicationId "com.online.androidattendanceproject"
         minSdkVersion 21
         targetSdkVersion 27
         versionCode 1

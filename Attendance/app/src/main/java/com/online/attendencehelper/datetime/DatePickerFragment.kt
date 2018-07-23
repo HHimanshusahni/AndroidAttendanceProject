@@ -51,7 +51,7 @@ class DatePickerFragment (val textView: TextView): DialogFragment(), DatePickerD
                 this, // DatePickerDialog.OnDateSetListener
                 year, // Year
                 month, // Month of year
-                day // Day of month
+                day // Day of monthz
         )
     }
 
