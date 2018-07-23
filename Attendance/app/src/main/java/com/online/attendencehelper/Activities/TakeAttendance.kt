@@ -74,12 +74,24 @@ class TakeAttendance : AppCompatActivity() {
 //        refreshAttendance()
 //    }
 
+        btnClear.setOnClickListener{
+            for(i in attendance.indices){
+                attendance[i].present = false
+                attendanceAdapter.notifyDataSetChanged()
+            }
 
+        }
+        btnMarkAll.setOnClickListener{
+            for(i in attendance.indices){
+                attendance[i].present = true
+                attendanceAdapter.notifyDataSetChanged()
+            }
 
+        }
 
         // submit
 
-        btnSubmit.setOnClickListener {
+        btnFabSubmit.setOnClickListener {
 
 
             // code to submint date in datebase
