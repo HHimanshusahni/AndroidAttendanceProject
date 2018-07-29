@@ -1,5 +1,6 @@
 package com.online.attendencehelper.Activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.design.widget.NavigationView
@@ -14,15 +15,12 @@ import kotlinx.android.synthetic.main.app_bar_nav.*
 
 class navActi : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
+    lateinit var actIntent : Intent
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_nav)
         setSupportActionBar(toolbar)
 
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
-        }
 
         val toggle = ActionBarDrawerToggle(
                 this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
@@ -59,24 +57,33 @@ class navActi : AppCompatActivity(), NavigationView.OnNavigationItemSelectedList
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         // Handle navigation view item clicks here.
         when (item.itemId) {
-            R.id.nav_camera -> {
+            R.id.nav_take_attendance -> {
                 // Handle the camera action
+                actIntent = Intent(this, TakeAttendance::class.java)
+                startActivity(actIntent)
             }
-            R.id.nav_gallery -> {
+            R.id.nav_schedule -> {
+
+                actIntent = Intent(this, MySchedule::class.java)
+                startActivity(actIntent)
 
             }
-            R.id.nav_slideshow -> {
+            R.id.nav_add_subject -> {
+                actIntent = Intent(this, AddSubject::class.java)
+                startActivity(actIntent)
 
             }
-            R.id.nav_manage -> {
+            R.id.nav_show_subject-> {
+                actIntent = Intent(this, ShowSubject::class.java)
+                startActivity(actIntent)
 
             }
-            R.id.nav_share -> {
+            R.id.nav_report -> {
+                actIntent = Intent(this, ShowAttendanceReport::class.java)
+                startActivity(actIntent)
 
             }
-            R.id.nav_send -> {
 
-            }
         }
 
         drawer_layout.closeDrawer(GravityCompat.START)
