@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_marginLeft="15dp"
+    android:layout_marginBottom="10dp">
+
+    <TextView
+    android:id="@+id/tvSubjectName"
+    android:layout_width="wrap_content"
+    android:padding="5dp"
+    android:layout_height="wrap_content"
+    android:fontFamily="sans-serif"
+    android:textSize="25dp"
+    android:textStyle="bold"
+    tools:text="SubjectName" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            tools:text = "DEPARTMENT"
+            android:text="22dp"
+            android:id="@+id/tvSubjectDeparment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            tools:text = "Year"
+            android:textSize="19dp"
+            android:id="@+id/tvSubjectYear"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content" />
+        <TextView
+            tools:text="Stud"
+            android:id="@+id/tvtotalrollnos"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+
+        <ImageButton
+            android:id="@+id/btntakeAttendance"
+            android:layout_width="0dp"
+                android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_report" />
+    </LinearLayout>
+
+</LinearLayout>

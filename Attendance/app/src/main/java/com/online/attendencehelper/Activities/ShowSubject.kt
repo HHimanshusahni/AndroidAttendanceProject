@@ -2,13 +2,20 @@ package com.online.attendencehelper.Activities
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.widget.LinearLayoutManager
 import android.widget.ArrayAdapter
+import android.widget.LinearLayout
 import com.online.attendencehelper.R
+import com.online.attendencehelper.adapters.ShowSubjectRecyclerAdapter
 import com.online.attendencehelper.db.tables.SubjectTable
 import com.online.attendencehelper.db.tables.SubjectTableHelper
+import com.online.attendencehelper.models.Subject
 import kotlinx.android.synthetic.main.activity_show_subject.*
 
 class ShowSubject : AppCompatActivity() {
+    var subjectList = ArrayList<Subject>()
+    lateinit var ShowSubjectAdapter :ShowSubjectRecyclerAdapter
+    lateinit var subjectObject: Subject
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,23 +24,14 @@ class ShowSubject : AppCompatActivity() {
         val db = SubjectTableHelper(this).readableDatabase
         val subject = SubjectTable.getAllSubject(db)
 
-        val arrayList = ArrayList<String> ()
-
         for (i in subject){
 
-//             arrayList.add( i.studentid.toString()+"   "+i.studentName.toString()+"  "+i.present+" dt"+i.date)
-
-            arrayList.add("${i.subjectname} ${i.department} ${i.year} ${i.totalrollnos} ")
+            subjectList.add(Subject(i.subjectid,i.subjectname,i.year,i.department,i.totalrollnos))
         }
-        val arrayAdapter = ArrayAdapter<String>(
-                this,
-                android.R.layout.simple_list_item_1,
-                android.R.id.text1,
-                arrayList
+        rvShowSubject.layoutManager = LinearLayoutManager(this)
+        ShowSubjectAdapter = ShowSubjectRecyclerAdapter(subjectList)
+        rvShowSubject.adapter = ShowSubjectAdapter
 
-        )
-
-        lvShowSubject.setAdapter(arrayAdapter);
 
     }
 }
