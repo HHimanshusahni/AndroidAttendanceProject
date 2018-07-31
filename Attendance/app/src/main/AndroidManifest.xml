@@ -15,16 +15,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".Activities.MySchedule" />
-        <activity android:name=".Activities.AddSubject" />
-        <activity android:name=".Activities.TakeAttendance" />
-        <activity android:name=".Activities.ShowAttendanceReport" />
-        <activity
-            android:name=".NavigationDrawer"
-            android:label="@string/title_activity_navigation_drawer"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Activities.ShowSubject" />
-        <activity android:name=".Drawer" />
+        <activity android:name=".Activities.MySchedule"
+            android:label="MY SCHEDULE"/>
+        <activity android:name=".Activities.AddSubject"
+            android:label="ADD SUBJECT"/>
+        <activity android:name=".Activities.TakeAttendance"
+            android:label="TAKE ATTENDANCE"/>
+        <activity android:name=".Activities.ShowAttendanceReport"
+            android:label="REPORT"/>
+
         <activity
             android:name=".Activities.MainActivity"
             android:label="Attendance Helper"

@@ -22,5 +22,21 @@
 
     <include layout="@layout/content_nav" />
 
+    <android.support.v7.widget.RecyclerView
+        android:layout_marginTop="50dp"
+        android:id="@+id/rvShowSubject"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
 
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/btnFabAddSub"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right|bottom"
+        android:backgroundTintMode="add"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="15dp"
+        android:src="@drawable/ic_add_subject"
+        />
 </android.support.design.widget.CoordinatorLayout>

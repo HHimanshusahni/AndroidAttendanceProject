@@ -20,11 +20,7 @@
             android:id="@+id/nav_report"
             android:icon="@drawable/ic_report"
             android:title="Report" />
-        <item
-            android:id="@+id/nav_show_subject"
-            android:icon="@drawable/ic_show_subject"
-            android:title="Show subjects"
-            />
+
     </group>
 
 
