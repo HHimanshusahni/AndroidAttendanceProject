@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import com.online.attendencehelper.R
 import com.online.attendencehelper.adapters.ShowSubjectRecyclerAdapter
 import com.online.attendencehelper.db.tables.SubjectTable
@@ -114,9 +115,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             subjectList.add(Subject(i.subjectid,i.subjectname,i.year,i.department,i.totalrollnos))
         }
         rvShowSubject.layoutManager = LinearLayoutManager(this)
-        ShowSubjectAdapter = ShowSubjectRecyclerAdapter(subjectList)
+        ShowSubjectAdapter = ShowSubjectRecyclerAdapter(subjectList,{subject -> subjectItemClicked(subject) })
         rvShowSubject.adapter = ShowSubjectAdapter
 
+
+    }
+    private fun subjectItemClicked(subject: Subject){
+
+        actIntent = Intent(this,TakeAttendance::class.java)
+        startActivity(actIntent)
 
     }
 }
