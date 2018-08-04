@@ -78,11 +78,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         // Handle navigation view item clicks here.
         when (item.itemId) {
-            R.id.nav_take_attendance -> {
-                // Handle the camera action
-                actIntent = Intent(this, TakeAttendance::class.java)
-                startActivity(actIntent)
-            }
+
             R.id.nav_schedule -> {
 
                 actIntent = Intent(this, MySchedule::class.java)
@@ -123,7 +119,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private fun subjectItemClicked(subject: Subject){
 
         actIntent = Intent(this,TakeAttendance::class.java)
+        actIntent.putExtra(Intent.EXTRA_TEXT,subject.subjectname.toString())
         startActivity(actIntent)
+
+
 
     }
 }

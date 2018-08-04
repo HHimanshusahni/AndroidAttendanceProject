@@ -35,6 +35,10 @@ class TakeAttendance : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_take_attendance)
 
+        var  intentThatStartedThisActivity = getIntent()
+            var subjectName = intentThatStartedThisActivity.getStringExtra(Intent.EXTRA_TEXT)
+            tvTitleSubject.setText(subjectName)
+
 
         // set the date and time from systemtime
         val dateTime= DateTime()
@@ -112,7 +116,7 @@ class TakeAttendance : AppCompatActivity() {
         }
 
 
-            listSubjects()
+
 
     }
 
@@ -131,23 +135,6 @@ class TakeAttendance : AppCompatActivity() {
             )
         }
         return attendance
-    }
-    fun listSubjects(){
-
-        val dbsubject = SubjectTableHelper(this).readableDatabase
-
-        subjectList = SubjectTable.getAllSubjectName(dbsubject)
-        val spinner : Spinner = findViewById(R.id.spinnerSubject)
-
-        val adapter = ArrayAdapter(
-                this,
-                android.R.layout.simple_list_item_1,
-                android.R.id.text1,
-                subjectList
-        )
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spinner.setAdapter(adapter)
-
     }
 
 }

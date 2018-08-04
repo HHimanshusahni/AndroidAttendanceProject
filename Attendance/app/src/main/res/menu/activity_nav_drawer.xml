@@ -4,10 +4,7 @@
     tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_take_attendance"
-            android:icon="@drawable/ic_take_attendance"
-            android:title="Take Attendance" />
+
         <item
             android:id="@+id/nav_add_subject"
             android:icon="@drawable/ic_add_subject"
