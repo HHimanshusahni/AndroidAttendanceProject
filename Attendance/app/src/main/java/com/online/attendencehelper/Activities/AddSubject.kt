@@ -8,8 +8,8 @@ import android.widget.*
 import com.online.attendencehelper.R
 import com.online.attendencehelper.datetime.DateTime
 import com.online.attendencehelper.datetime.TimePickerFragment
-import com.online.attendencehelper.db.AttendanceTableHelper
 import com.online.attendencehelper.db.tables.SubjectTable
+import com.online.attendencehelper.db.tables.TableHelper
 import com.online.attendencehelper.models.Subject
 
 import kotlinx.android.synthetic.main.activity_add_subject.*
@@ -46,7 +46,7 @@ class AddSubject : AppCompatActivity() {
                             Integer.valueOf( etRollNo.text.toString())
             )
 
-            val db = AttendanceTableHelper(this).writableDatabase
+            val db = TableHelper(this).writableDatabase
             SubjectTable.addSubject(db,subject)
             actIntent = Intent(this, MainActivity::class.java)
             startActivity(actIntent)

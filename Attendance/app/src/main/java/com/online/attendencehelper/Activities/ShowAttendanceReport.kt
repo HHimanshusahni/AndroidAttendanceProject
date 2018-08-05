@@ -4,8 +4,8 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import com.online.attendencehelper.R
-import com.online.attendencehelper.db.AttendanceTableHelper
 import com.online.attendencehelper.db.tables.AttendanceTable
+import com.online.attendencehelper.db.tables.TableHelper
 import kotlinx.android.synthetic.main.activity_show_attendance_report.*
 
 class ShowAttendanceReport : AppCompatActivity() {
@@ -13,7 +13,7 @@ class ShowAttendanceReport : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_show_attendance_report)
-        val db = AttendanceTableHelper(this).readableDatabase
+        val db = TableHelper(this).readableDatabase
         val attendance = AttendanceTable.getAllAttendance(db)
 //        tvDate.setText(attendance[0].date)
 //        tvTime.setText(attendance[0].time)

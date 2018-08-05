@@ -4,18 +4,15 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
-import android.widget.ArrayAdapter
-import android.widget.Spinner
 import android.widget.Toast
 import com.online.attendencehelper.R
 import com.online.attendencehelper.adapters.AttendanceRecyclerAdapter
 import com.online.attendencehelper.datetime.DatePickerFragment
 import com.online.attendencehelper.datetime.DateTime
 import com.online.attendencehelper.datetime.TimePickerFragment
-import com.online.attendencehelper.db.AttendanceTableHelper
 import com.online.attendencehelper.db.tables.AttendanceTable
 import com.online.attendencehelper.db.tables.SubjectTable
-import com.online.attendencehelper.db.tables.SubjectTableHelper
+import com.online.attendencehelper.db.tables.TableHelper
 import com.online.attendencehelper.models.Attendance
 import com.online.attendencehelper.models.Subject
 import kotlinx.android.synthetic.main.activity_take_attendance.*
@@ -26,10 +23,6 @@ class TakeAttendance : AppCompatActivity() {
     lateinit var attendanceAdapter : AttendanceRecyclerAdapter
 
     lateinit var actIntent :Intent
-    val TAG : String = "TakeAttendance"
-
-
-    var subjectList = ArrayList<String>()
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
@@ -64,7 +57,7 @@ class TakeAttendance : AppCompatActivity() {
         attendance = createArrayListAttendance(attendance,subject.totalrollnos)
 
 
-        val db = AttendanceTableHelper(this).writableDatabase
+        val db = TableHelper(this).writableDatabase
 
         rvAttendance.layoutManager = LinearLayoutManager(this)
 

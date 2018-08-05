@@ -1,8 +1,6 @@
 package com.online.attendencehelper.Activities
-
 import android.content.Intent
 import android.os.Bundle
-import android.os.Parcelable
 import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
@@ -10,14 +8,12 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
 import com.online.attendencehelper.R
 import com.online.attendencehelper.adapters.ShowSubjectRecyclerAdapter
 import com.online.attendencehelper.db.tables.SubjectTable
-import com.online.attendencehelper.db.tables.SubjectTableHelper
+import com.online.attendencehelper.db.tables.TableHelper
 import com.online.attendencehelper.models.Subject
 import kotlinx.android.synthetic.main.activity_main.*
-//import kotlinx.android.synthetic.main.activity_show_subject.*
 import kotlinx.android.synthetic.main.app_bar_nav.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -104,7 +100,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     private fun showSubject() {
-        val db = SubjectTableHelper(this).readableDatabase
+        val db = TableHelper(this).readableDatabase
         val subject = SubjectTable.getAllSubject(db)
 
         for (i in subject){
