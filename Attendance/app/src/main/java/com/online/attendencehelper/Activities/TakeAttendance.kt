@@ -35,9 +35,9 @@ class TakeAttendance : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_take_attendance)
 
-        var  intentThatStartedThisActivity = getIntent()
-            var subjectName = intentThatStartedThisActivity.getStringExtra(Intent.EXTRA_TEXT)
-            tvTitleSubject.setText(subjectName)
+        var subject:Subject
+        subject = getIntent().getSerializableExtra("serialize_data") as Subject
+        tvTitleSubject.setText(subject.subjectname)
 
 
         // set the date and time from systemtime
@@ -61,7 +61,7 @@ class TakeAttendance : AppCompatActivity() {
 
             // storing in tables
 
-        attendance = createArrayListAttendance(attendance,20)
+        attendance = createArrayListAttendance(attendance,subject.totalrollnos)
 
 
         val db = AttendanceTableHelper(this).writableDatabase

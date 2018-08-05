@@ -2,6 +2,7 @@ package com.online.attendencehelper.Activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Parcelable
 import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
@@ -119,10 +120,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private fun subjectItemClicked(subject: Subject){
 
         actIntent = Intent(this,TakeAttendance::class.java)
-        actIntent.putExtra(Intent.EXTRA_TEXT,subject.subjectname.toString())
+        actIntent.putExtra("serialize_data",subject)
         startActivity(actIntent)
 
 
 
     }
+
 }
