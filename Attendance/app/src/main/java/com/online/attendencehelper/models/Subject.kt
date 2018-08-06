@@ -9,8 +9,4 @@ data class Subject(
         var department :String,
         var totalrollnos:Int
 ):Serializable
-data class SubjectSchedule(
-        var subjectid: Int,
-        var timings: String,
-        var days :String
-)
+

@@ -1,6 +1,7 @@
 package com.online.attendencehelper.Activities
 
 import android.content.Intent
+import android.database.sqlite.SQLiteDatabase
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
@@ -10,29 +11,34 @@ import com.online.attendencehelper.adapters.AttendanceRecyclerAdapter
 import com.online.attendencehelper.datetime.DatePickerFragment
 import com.online.attendencehelper.datetime.DateTime
 import com.online.attendencehelper.datetime.TimePickerFragment
+import com.online.attendencehelper.db.tables.AttendanceRecordTable
 import com.online.attendencehelper.db.tables.AttendanceTable
-import com.online.attendencehelper.db.tables.SubjectTable
 import com.online.attendencehelper.db.tables.TableHelper
 import com.online.attendencehelper.models.Attendance
+import com.online.attendencehelper.models.AttendanceRecord
+import com.online.attendencehelper.models.Student
 import com.online.attendencehelper.models.Subject
 import kotlinx.android.synthetic.main.activity_take_attendance.*
 
 class TakeAttendance : AppCompatActivity() {
 
-    var attendance = ArrayList<Attendance>()
+    var attendancelist = ArrayList<Attendance>()
     lateinit var attendanceAdapter : AttendanceRecyclerAdapter
-
     lateinit var actIntent :Intent
+    lateinit var subject:Subject
+    lateinit var attendanceTable:AttendanceTable
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_take_attendance)
 
-        var subject:Subject
         subject = getIntent().getSerializableExtra("serialize_data") as Subject
         tvTitleSubject.setText(subject.subjectname)
 
 
+
+        val db = TableHelper(this).writableDatabase
         // set the date and time from systemtime
         val dateTime= DateTime()
         dateTime.setTime(btnAttendanceTime)
@@ -52,56 +58,34 @@ class TakeAttendance : AppCompatActivity() {
 
         }
 
-            // storing in tables
 
-        attendance = createArrayListAttendance(attendance,subject.totalrollnos)
-
-
-        val db = TableHelper(this).writableDatabase
-
+       val lastAttendanceId =  AttendanceRecordTable.lastAttendanceId(db)
+        attendancelist = createArrayListAttendance(attendancelist,subject, lastAttendanceId+1)
         rvAttendance.layoutManager = LinearLayoutManager(this)
-
-        attendanceAdapter = AttendanceRecyclerAdapter(attendance)
+        attendanceAdapter = AttendanceRecyclerAdapter(attendancelist)
         rvAttendance.adapter = attendanceAdapter
 
 
-        fun refreshAttendance(){
-            attendance.clear()
-            attendance.addAll(AttendanceTable.getAllAttendance(db))
-            attendanceAdapter.notifyDataSetChanged()
-        }
 
 
-//    val onAttendanceUpdateName = {
-//        attendance:Attendance ->
-//        AttendanceTable.updateStudentName(db,attendance)
-//        refreshAttendance()
-//    }
 
         btnClear.setOnClickListener{
-            for(i in attendance.indices){
-                attendance[i].present = false
+            for(i in attendancelist.indices){
+                attendancelist[i].present = false
                 attendanceAdapter.notifyDataSetChanged()
             }
 
         }
         btnMarkAll.setOnClickListener{
-            for(i in attendance.indices){
-                attendance[i].present = true
+            for(i in attendancelist.indices){
+                attendancelist[i].present = true
                 attendanceAdapter.notifyDataSetChanged()
             }
 
         }
 
-        // submit
-
         btnFabSubmit.setOnClickListener {
-
-
-            // code to submint date in datebase
-//            attendance.addAll(AttendanceTable.getAllAttendance(db))
-            for(i in attendance)
-               AttendanceTable.addAttendance(db,i)
+            submitData(db)
 
             actIntent = Intent(this, MainActivity::class.java)
             startActivity(actIntent)
@@ -113,19 +97,32 @@ class TakeAttendance : AppCompatActivity() {
 
     }
 
-    private fun createArrayListAttendance(attendance: ArrayList<Attendance>,Number:Int) :ArrayList<Attendance>{
+    // Submitting in the database
+    private fun submitData(db:SQLiteDatabase){
+
+        var attendanceRecord = AttendanceRecord(
+                null,
+                subject.subjectid!!,
+                btnAttendanceTime.text.toString(),
+                btnAttendanceDate.text.toString()
+        )
+        AttendanceRecordTable.addAttendanceRecord(db,attendanceRecord)
+        for(i in attendancelist)
+            AttendanceTable.addAttendance(db,i)
 
 
-        for (i in 1..Number){
+    }
+
+    private fun createArrayListAttendance(attendance: ArrayList<Attendance>,subject:Subject,attendanceid:Int) :ArrayList<Attendance>{
+
+
+        for (i in 1..subject.totalrollnos){
 
             attendance.add(Attendance(
-                    0,
-                         i,
-                    "Student $i",
-                    false,
-                    btnAttendanceTime.text.toString(),
-                    btnAttendanceDate.text.toString())
-            )
+                    attendanceid ,
+                    i,
+                    false
+            ))
         }
         return attendance
     }

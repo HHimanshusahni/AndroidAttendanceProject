@@ -9,13 +9,9 @@ class AttendanceTable {
         val TABLE_NAME = "attendances"
         val CMD_CREATE_TABLE = """
             CREATE TABLE IF NOT EXISTS ${TABLE_NAME}(
-
-            ${Columns.SUBJECTID} INTEGER,
+            ${Columns.ATTENDANCEID} INTEGER ,
             ${Columns.STUDENTID} INTEGER ,
-            ${Columns.STUDENTNAME} TEXT,
-            ${Columns.PRESENT} BOOLEAN,
-            ${Columns.TIME} TEXT,
-            ${Columns.DATE} TEXT
+            ${Columns.PRESENT} BOOLEAN
             );
         """.trimIndent()
 
@@ -23,12 +19,9 @@ class AttendanceTable {
         fun addAttendance(db: SQLiteDatabase, attendance: Attendance): Long {
 
             val row = ContentValues()
-            row.put(Columns.SUBJECTID, attendance.subjectid)
+            row.put(Columns.ATTENDANCEID, attendance.attendanceid)
             row.put(Columns.STUDENTID, attendance.studentid)
-            row.put(Columns.STUDENTNAME, attendance.studentName)
             row.put(Columns.PRESENT, attendance.present)
-            row.put(Columns.TIME, attendance.time)
-            row.put(Columns.DATE, attendance.date)
 
             return db.insert(TABLE_NAME, null, row)
         }
@@ -38,31 +31,23 @@ class AttendanceTable {
             val attendances = ArrayList<Attendance>()
             val cursor = db.query(
                     TABLE_NAME,
-                    arrayOf(Columns.SUBJECTID,
+                    arrayOf(Columns.ATTENDANCEID,
                             Columns.STUDENTID,
-                            Columns.STUDENTNAME,
-                            Columns.PRESENT,
-                            Columns.TIME,
-                            Columns.DATE),
+                            Columns.PRESENT
+                    ),
                     null, null,
                     null, null,
                     null
             )
-            val subjectidCol = cursor.getColumnIndex(Columns.SUBJECTID)
+            val attendanceidCol = cursor.getColumnIndex(Columns.ATTENDANCEID)
             val studentidCol = cursor.getColumnIndex(Columns.STUDENTID)
-            val studentnameCol = cursor.getColumnIndex(Columns.STUDENTNAME)
             val presentCol = cursor.getColumnIndex(Columns.PRESENT)
-            val timeCol = cursor.getColumnIndex(Columns.TIME)
-            val dateCol = cursor.getColumnIndex(Columns.DATE)
 
             while (cursor.moveToNext()) {
                 val rowTask = Attendance(
-                        cursor.getInt(subjectidCol),
+                        cursor.getInt(attendanceidCol),
                         cursor.getInt(studentidCol),
-                        cursor.getString(studentnameCol),
-                        cursor.getInt(presentCol) == 1,
-                        cursor.getString(timeCol),
-                        cursor.getString(dateCol).toString()
+                        cursor.getInt(presentCol) == 1
                 )
                 attendances.add(rowTask)
             }
@@ -70,12 +55,9 @@ class AttendanceTable {
         }
 
         object Columns {
-            val SUBJECTID = "subjectid"
+            val ATTENDANCEID = "attendanceid"
             val STUDENTID = "studentid"
-            val STUDENTNAME = "studentname"
             val PRESENT = "present"
-            val TIME = "time"
-            val DATE = "date"
         }
     }
 }

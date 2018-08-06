@@ -10,12 +10,12 @@ import android.view.View
 import android.view.ViewGroup
 import com.online.attendencehelper.R
 import com.online.attendencehelper.models.Attendance
+import com.online.attendencehelper.models.Student
 import kotlinx.android.synthetic.main.activity_take_attendance.view.*
 import kotlinx.android.synthetic.main.list_item_attendance.view.*
 
 class AttendanceRecyclerAdapter(
         val attendances :ArrayList<Attendance>
-//        val onAttendanceUpdate: (attendance:Attendance) ->Unit
 
 ): RecyclerView.Adapter<AttendanceRecyclerAdapter.AttendanceViewHolder>() {
 
@@ -33,13 +33,13 @@ class AttendanceRecyclerAdapter(
 
     override fun onBindViewHolder(holder: AttendanceViewHolder, position: Int) {
         holder.itemView.checkbox.setOnCheckedChangeListener(null)
-        holder.itemView.tvStudentName.setOnEditorActionListener(null)
+//        holder.itemView.tvStudentName.setOnEditorActionListener(null)
 
         holder.itemView.tvId.text = attendances[position].studentid.toString()
         holder.itemView.checkbox.isChecked = attendances[position].present
 
-        // tried to make student name editable
-        holder.itemView.tvStudentName.text = attendances[position].studentName
+
+//        holder.itemView.tvStudentName.text = student[position].studentname
 
 
         holder.itemView.checkbox.setOnCheckedChangeListener{

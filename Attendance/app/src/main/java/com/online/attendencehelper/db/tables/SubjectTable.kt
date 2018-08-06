@@ -1,6 +1,7 @@
 package com.online.attendencehelper.db.tables
 
 import android.content.ContentValues
+import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import com.online.attendencehelper.models.Subject
 class SubjectTable{
@@ -58,6 +59,13 @@ class SubjectTable{
                         subjects.add(rowTask)
             }
             return subjects
+        }
+        fun getSubjectNameFromId(db:SQLiteDatabase,subjectId:Int):String{
+
+           var c: Cursor
+           c =  db.rawQuery(" SELECT ${Columns.SUBJECTNAME} FROM ${TABLE_NAME}  WHERE ${Columns.SUBJECTID}=?", arrayOf(subjectId.toString()))
+            c.moveToNext()
+            return c.getColumnIndex(Columns.SUBJECTNAME).toString()
         }
 
         fun getAllSubjectName(db: SQLiteDatabase):ArrayList<String>{

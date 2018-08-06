@@ -14,16 +14,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <activity android:name=".Activities.MySchedule"
-            android:label="MY SCHEDULE"/>
-        <activity android:name=".Activities.AddSubject"
-            android:label="ADD SUBJECT"/>
-        <activity android:name=".Activities.TakeAttendance"
-            android:label="TAKE ATTENDANCE"/>
-        <activity android:name=".Activities.ShowAttendanceReport"
-            android:label="REPORT"/>
-
+        <activity
+            android:name=".Activities.MySchedule"
+            android:label="MY SCHEDULE" />
+        <activity
+            android:name=".Activities.AddSubject"
+            android:label="ADD SUBJECT" />
+        <activity
+            android:name=".Activities.TakeAttendance"
+            android:label="TAKE ATTENDANCE" />
+        <activity
+            android:name=".Activities.ShowAttendanceReport"
+            android:label="REPORT" />
         <activity
             android:name=".Activities.MainActivity"
             android:label="Attendance Helper"
@@ -34,6 +36,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Activities.ShowAttendanceActivity"></activity>
     </application>
 
 </manifest>
