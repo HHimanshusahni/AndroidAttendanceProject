@@ -66,6 +66,7 @@ class AttendanceRecordTable {
                 )
                 attendanceRecordList.add(rowTask)
             }
+            cursor.close()
             return attendanceRecordList
         }
 

@@ -58,14 +58,43 @@ class SubjectTable{
                 )
                         subjects.add(rowTask)
             }
+            cursor.close()
             return subjects
         }
-        fun getSubjectNameFromId(db:SQLiteDatabase,subjectId:Int):String{
+        fun getSubjectFromId(db:SQLiteDatabase, subjectId:Int):Subject{
 
-           var c: Cursor
-           c =  db.rawQuery(" SELECT ${Columns.SUBJECTNAME} FROM ${TABLE_NAME}  WHERE ${Columns.SUBJECTID}=?", arrayOf(subjectId.toString()))
-            c.moveToNext()
-            return c.getColumnIndex(Columns.SUBJECTNAME).toString()
+            val cursor = db.query(
+                    TABLE_NAME,
+                    arrayOf(Columns.SUBJECTID,
+                            Columns.SUBJECTNAME,
+                            Columns.YEAR,
+                            Columns.DEPARTMENT,
+                            Columns.TOTALROLLNOS),
+                    Columns.SUBJECTID+"=?",
+                    arrayOf(subjectId.toString()),
+                    null,null,
+                    null
+
+            )
+
+            val subjectidCol = cursor.getColumnIndex( Columns.SUBJECTID)
+            val subjectnameidCol = cursor.getColumnIndex( Columns.SUBJECTNAME)
+            val yearidCol = cursor.getColumnIndex( Columns.YEAR)
+            val departmentidCol = cursor.getColumnIndex( Columns.DEPARTMENT)
+            val totalrollnoidCol = cursor.getColumnIndex( Columns.TOTALROLLNOS)
+            lateinit var subject:Subject
+            if(cursor.moveToFirst()){
+                 subject = Subject(
+                        cursor.getInt(subjectidCol),
+                        cursor.getString(subjectnameidCol),
+                        cursor.getInt(yearidCol),
+                        cursor.getString(departmentidCol),
+                        cursor.getInt(totalrollnoidCol)
+
+                )
+            }
+
+            return subject
         }
 
         fun getAllSubjectName(db: SQLiteDatabase):ArrayList<String>{
