@@ -8,11 +8,14 @@ import android.view.ViewGroup
 import com.online.attendencehelper.R
 import com.online.attendencehelper.db.tables.SubjectTable
 import com.online.attendencehelper.db.tables.TableHelper
+import com.online.attendencehelper.models.Attendance
 import com.online.attendencehelper.models.AttendanceRecord
+import com.online.attendencehelper.models.Subject
 import kotlinx.android.synthetic.main.list_item_show_attendance_report.view.*
 
 class ShowAttendanceReportRecyclerAdapter(
-        val  reports :ArrayList<AttendanceRecord>
+        val  reports :ArrayList<AttendanceRecord>,
+        val clickListener: (AttendanceRecord) -> Unit
 )
     :RecyclerView.Adapter<ShowAttendanceReportRecyclerAdapter.ShowAttendanceReportViewHolder>() {
 
@@ -26,7 +29,7 @@ class ShowAttendanceReportRecyclerAdapter(
     override fun getItemCount(): Int = reports.size
 
     override fun onBindViewHolder(holder: ShowAttendanceReportViewHolder?, position: Int) {
-        (holder as ShowAttendanceReportViewHolder).bind(reports[position])
+        (holder as ShowAttendanceReportViewHolder).bind(reports[position],clickListener)
     }
 
 
@@ -34,16 +37,16 @@ class ShowAttendanceReportRecyclerAdapter(
 
 
 
-        fun bind(attendance:AttendanceRecord){
+        fun bind(attendancerecord:AttendanceRecord,clickListener:(AttendanceRecord)->Unit){
 
             val db = TableHelper(itemView.context).readableDatabase
-            val subject = SubjectTable.getSubjectFromId(db,attendance.subjectid)
+            val subject = SubjectTable.getSubjectFromId(db,attendancerecord.subjectid)
             itemView.tvSubjectName.text = subject.subjectname
             itemView.tvBranch.text = subject.department
             itemView.tvyear.text = subject.year.toString()
-            itemView.tvDate.text = attendance.attendancedate
-            itemView.tvTime.text = attendance.attendacetime
-
+            itemView.tvDate.text = attendancerecord.attendancedate
+            itemView.tvTime.text = attendancerecord.attendacetime
+            itemView.setOnClickListener{clickListener(attendancerecord)}
         }
     }
 

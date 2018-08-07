@@ -54,6 +54,7 @@ class AttendanceTable {
             return attendances
         }
 
+
         object Columns {
             val ATTENDANCEID = "attendanceid"
             val STUDENTID = "studentid"

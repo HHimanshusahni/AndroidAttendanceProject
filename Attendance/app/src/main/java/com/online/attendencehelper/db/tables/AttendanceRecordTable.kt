@@ -70,13 +70,7 @@ class AttendanceRecordTable {
             return attendanceRecordList
         }
 
-//        fun getAttendanceRecordFromId(db: SQLiteDatabase,attendanceId:Int):AttendanceTable{
-//            var c :Cursor
-//            c = db.rawQuery(" SELECT * from ${TABLE_NAME} where ${Columns.ATTENDANCEID}=?", arrayOf(attendanceId.toString()))
-//            c.moveToNext()
-//            return c.getColumnIndex(Columns.)
-//
-//        }
+
         object Columns {
             val ATTENDANCEID = "attendanceid"
             val SUBJECTID = "subjectid"

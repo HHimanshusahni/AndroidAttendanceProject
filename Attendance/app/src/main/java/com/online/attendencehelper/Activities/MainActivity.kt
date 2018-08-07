@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     lateinit var actIntent : Intent
 
 
-    var subjectList = ArrayList<Subject>()
+//    var subjectList = ArrayList<Subject>()
     lateinit var ShowSubjectAdapter : ShowSubjectRecyclerAdapter
     lateinit var subjectObject: Subject
 
@@ -101,12 +101,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private fun showSubject() {
         val db = TableHelper(this).readableDatabase
-        val subject = SubjectTable.getAllSubject(db)
-
-        for (i in subject){
-
-            subjectList.add(Subject(i.subjectid,i.subjectname,i.year,i.department,i.totalrollnos))
-        }
+        val subjectList = SubjectTable.getAllSubject(db)
+//
+//        for (i in subject){
+//
+//            subjectList.add(Subject(i.subjectid,i.subjectname,i.year,i.department,i.totalrollnos))
+//        }
         rvShowSubject.layoutManager = LinearLayoutManager(this)
         ShowSubjectAdapter = ShowSubjectRecyclerAdapter(subjectList,{subject -> subjectItemClicked(subject) })
         rvShowSubject.adapter = ShowSubjectAdapter
