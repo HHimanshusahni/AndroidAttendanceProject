@@ -92,6 +92,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 startActivity(actIntent)
 
             }
+            R.id.nav_settings ->{
+
+            }
 
         }
 

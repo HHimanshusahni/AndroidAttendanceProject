@@ -53,6 +53,32 @@ class AttendanceTable {
             }
             return attendances
         }
+        fun getAttendanceFromId(db: SQLiteDatabase, attendanceid:Int): ArrayList<Attendance> {
+            val attendances = ArrayList<Attendance>()
+            val cursor = db.query(
+                    TABLE_NAME,
+                    arrayOf(Columns.ATTENDANCEID,
+                            Columns.STUDENTID,
+                            Columns.PRESENT
+                    ),Columns.ATTENDANCEID+"=?",
+                    arrayOf(attendanceid.toString()),
+                    null, null,
+                    null
+            )
+            val attendanceidCol = cursor.getColumnIndex(Columns.ATTENDANCEID)
+            val studentidCol = cursor.getColumnIndex(Columns.STUDENTID)
+            val presentCol = cursor.getColumnIndex(Columns.PRESENT)
+
+            while (cursor.moveToNext()) {
+                val rowTask = Attendance(
+                        cursor.getInt(attendanceidCol),
+                        cursor.getInt(studentidCol),
+                        cursor.getInt(presentCol) == 1
+                )
+                attendances.add(rowTask)
+            }
+            return attendances
+        }
 
 
         object Columns {
