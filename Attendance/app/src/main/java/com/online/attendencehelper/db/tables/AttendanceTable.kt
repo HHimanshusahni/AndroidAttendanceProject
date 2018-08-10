@@ -79,6 +79,10 @@ class AttendanceTable {
             }
             return attendances
         }
+        fun deleteRowFromAttendanceId(db:SQLiteDatabase,attendanceId:Int){
+            db.delete(TABLE_NAME,"${Columns.ATTENDANCEID}=?", arrayOf(attendanceId.toString()))
+        }
+
 
 
         object Columns {

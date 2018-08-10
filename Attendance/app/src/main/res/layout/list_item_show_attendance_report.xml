@@ -2,11 +2,11 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="80dp"
+    android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
     android:padding="12dp"
     android:layout_marginBottom="10dp"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     android:background="@drawable/customborder"
     >
     <TextView
@@ -18,35 +18,52 @@
         android:padding="4dp"
         android:layout_height="wrap_content" />
 
-    <TextView
-        tools:text = "branch"
-        android:id="@+id/tvBranch"
-        android:textSize="15dp"
-        android:padding="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-    <TextView
-        tools:text = "year"
-        android:id="@+id/tvyear"
-        android:textSize="15dp"
-        android:padding="5dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <TextView
+            tools:text = "branch"
+            android:id="@+id/tvBranch"
+            android:textSize="15dp"
+            android:padding="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            tools:text = "year"
+            android:id="@+id/tvyear"
+            android:textSize="15dp"
+            android:padding="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
-    <TextView
-        android:textSize="15dp"
-        android:id="@+id/tvDate"
-        android:icon ="@drawable/ic_date_range"
-        tools:text= "Date"
-        android:padding="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-    <TextView
-        tools:text= "Time"
-        android:id="@+id/tvTime"
-        android:icon = "@drawable/ic_access_time"
-        android:textSize="15dp"
-        android:padding="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        <TextView
+            android:textSize="15dp"
+            android:id="@+id/tvDate"
+            android:icon ="@drawable/ic_date_range"
+            tools:text= "Date"
+            android:padding="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            tools:text= "Time"
+            android:id="@+id/tvTime"
+            android:icon = "@drawable/ic_access_time"
+            android:textSize="15dp"
+            android:padding="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <ImageButton
+            android:src="@drawable/ic_delete_black_24dp"
+            android:background="@color/colorWhite"
+            android:padding="10dp"
+            android:id="@+id/btnAttendanceRecoreDelete"
+            android:layout_width="0dp"
+            android:layout_weight="0.4"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+
 </LinearLayout>

@@ -15,7 +15,8 @@ import kotlinx.android.synthetic.main.list_item_show_attendance_report.view.*
 
 class ShowAttendanceReportRecyclerAdapter(
         val  reports :ArrayList<AttendanceRecord>,
-        val clickListener: (AttendanceRecord) -> Unit
+        val clickListener: (AttendanceRecord) -> Unit,
+        val reportDeleteListener: (Int)-> Unit
 )
     :RecyclerView.Adapter<ShowAttendanceReportRecyclerAdapter.ShowAttendanceReportViewHolder>() {
 
@@ -29,7 +30,7 @@ class ShowAttendanceReportRecyclerAdapter(
     override fun getItemCount(): Int = reports.size
 
     override fun onBindViewHolder(holder: ShowAttendanceReportViewHolder?, position: Int) {
-        (holder as ShowAttendanceReportViewHolder).bind(reports[position],clickListener)
+        (holder as ShowAttendanceReportViewHolder).bind(reports[position],clickListener,reportDeleteListener)
     }
 
 
@@ -37,7 +38,10 @@ class ShowAttendanceReportRecyclerAdapter(
 
 
 
-        fun bind(attendancerecord:AttendanceRecord,clickListener:(AttendanceRecord)->Unit){
+        fun bind(attendancerecord:AttendanceRecord,
+                 clickListener:(AttendanceRecord)->Unit,
+                 reportDeleteListener: (Int) -> Unit)
+        {
 
             val db = TableHelper(itemView.context).readableDatabase
             val subject = SubjectTable.getSubjectFromId(db,attendancerecord.subjectid)
@@ -46,7 +50,8 @@ class ShowAttendanceReportRecyclerAdapter(
             itemView.tvyear.text = subject.year.toString()
             itemView.tvDate.text = attendancerecord.attendancedate
             itemView.tvTime.text = attendancerecord.attendacetime
-            itemView.setOnClickListener{clickListener(attendancerecord)}
+            itemView.setOnClickListener{clickListener(attendancerecord) }
+            itemView.btnAttendanceRecoreDelete.setOnClickListener{reportDeleteListener(attendancerecord.attendanceid!!)}
         }
     }
 

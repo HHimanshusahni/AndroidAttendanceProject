@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import com.online.attendencehelper.R
 import com.online.attendencehelper.R.layout.activity_show_attendance_report
 import com.online.attendencehelper.adapters.ShowAttendanceReportRecyclerAdapter
@@ -30,7 +31,11 @@ class ShowAttendanceReport : AppCompatActivity() {
         val attendanceRecordList = AttendanceRecordTable.getAllAttendanceRecord(db)
 
         rvShowReport.layoutManager = LinearLayoutManager(this)
-        showAttendanceAdapter = ShowAttendanceReportRecyclerAdapter(attendanceRecordList,{attendancerecord: AttendanceRecord -> AttendanceRecordItemClicked(attendancerecord)})
+        showAttendanceAdapter = ShowAttendanceReportRecyclerAdapter(
+                attendanceRecordList,
+                {attendancerecord: AttendanceRecord -> AttendanceRecordItemClicked(attendancerecord)},
+                {Int ->onDeleteButtonClicked(Int)}
+        )
         rvShowReport.adapter = showAttendanceAdapter
 
 
@@ -44,6 +49,15 @@ class ShowAttendanceReport : AppCompatActivity() {
         startActivity(actIntent)
 
 
+
+    }
+    private fun onDeleteButtonClicked(attendanceId:Int){
+        val db = TableHelper(this).writableDatabase
+        AttendanceRecordTable.deleteRowFromAttendanceId(db,attendanceId)
+        AttendanceTable.deleteRowFromAttendanceId(db,attendanceId)
+
+        this.recreate()
+        Toast.makeText(this,"Report Deleted ",Toast.LENGTH_SHORT).show()
 
     }
 
