@@ -9,8 +9,10 @@ import android.widget.*
 import com.online.attendencehelper.R
 import com.online.attendencehelper.datetime.DateTime
 import com.online.attendencehelper.datetime.TimePickerFragment
+import com.online.attendencehelper.db.tables.StudentTable
 import com.online.attendencehelper.db.tables.SubjectTable
 import com.online.attendencehelper.db.tables.TableHelper
+import com.online.attendencehelper.models.Student
 import com.online.attendencehelper.models.Subject
 
 import kotlinx.android.synthetic.main.activity_add_subject.*
@@ -68,7 +70,15 @@ class AddSubject : AppCompatActivity() {
                     SubjectTable.editSubject(db, subject)
                 }else{
                     SubjectTable.addSubject(db,subject)
+
+                    val lastSubjectId = SubjectTable.lastSubjectId(db)
+                    val studentList =  ArrayList<Student>()
+                    for( i  in 1..subject.totalrollnos){
+                        studentList.add( Student(i,"Student"+i, lastSubjectId))
+                    }
+                    StudentTable.addStudents(db,studentList)
                 }
+                // Modify Code  for case Rollno's entered as different range of roll no's required and skipped  rollno's
 
                 actIntent = Intent(this, MainActivity::class.java)
                 startActivity(actIntent)

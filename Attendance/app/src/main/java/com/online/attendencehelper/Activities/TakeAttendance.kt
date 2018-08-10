@@ -13,6 +13,7 @@ import com.online.attendencehelper.datetime.DateTime
 import com.online.attendencehelper.datetime.TimePickerFragment
 import com.online.attendencehelper.db.tables.AttendanceRecordTable
 import com.online.attendencehelper.db.tables.AttendanceTable
+import com.online.attendencehelper.db.tables.StudentTable
 import com.online.attendencehelper.db.tables.TableHelper
 import com.online.attendencehelper.models.Attendance
 import com.online.attendencehelper.models.AttendanceRecord
@@ -58,11 +59,11 @@ class TakeAttendance : AppCompatActivity() {
 
         }
 
-
+       val studentList = StudentTable.getStudentListFromSubjectId(db,subject.subjectid!!)
        val lastAttendanceId =  AttendanceRecordTable.lastAttendanceId(db)
         attendancelist = createArrayListAttendance(attendancelist,subject, lastAttendanceId+1)
         rvAttendance.layoutManager = LinearLayoutManager(this)
-        attendanceAdapter = AttendanceRecyclerAdapter(attendancelist)
+        attendanceAdapter = AttendanceRecyclerAdapter(attendancelist,studentList)
         rvAttendance.adapter = attendanceAdapter
 
 

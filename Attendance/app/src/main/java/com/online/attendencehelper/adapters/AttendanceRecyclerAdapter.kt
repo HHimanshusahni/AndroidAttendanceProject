@@ -15,7 +15,8 @@ import kotlinx.android.synthetic.main.activity_take_attendance.view.*
 import kotlinx.android.synthetic.main.list_item_attendance.view.*
 
 class AttendanceRecyclerAdapter(
-        val attendances :ArrayList<Attendance>
+        val attendances :ArrayList<Attendance>,
+        val studentList:ArrayList<Student>
 
 ): RecyclerView.Adapter<AttendanceRecyclerAdapter.AttendanceViewHolder>() {
 
@@ -33,13 +34,13 @@ class AttendanceRecyclerAdapter(
 
     override fun onBindViewHolder(holder: AttendanceViewHolder, position: Int) {
         holder.itemView.checkbox.setOnCheckedChangeListener(null)
-//        holder.itemView.tvStudentName.setOnEditorActionListener(null)
+        holder.itemView.tvStudentName.setOnEditorActionListener(null)
 
         holder.itemView.tvId.text = attendances[position].studentid.toString()
         holder.itemView.checkbox.isChecked = attendances[position].present
 
 
-//        holder.itemView.tvStudentName.text = student[position].studentname
+        holder.itemView.tvStudentName.text = studentList[position].studentName
 
 
         holder.itemView.checkbox.setOnCheckedChangeListener{

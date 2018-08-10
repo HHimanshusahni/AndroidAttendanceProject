@@ -131,10 +131,24 @@ class SubjectTable{
             row.put(Columns.TOTALROLLNOS,subject.totalrollnos)
             db.update(TABLE_NAME,row,"${Columns.SUBJECTID}="+subject.subjectid,null)
         }
+        fun lastSubjectId(db: SQLiteDatabase):Int{
+
+            val query = " SELECT MAX(${Columns.SUBJECTID}) from $TABLE_NAME"
+            var cursor =db.rawQuery(query,null)
+            var lastSid:Int = 1
+            if(cursor.moveToFirst()){
+                cursor.moveToFirst()
+                lastSid = cursor.getInt(0)
+                cursor.close()
+            }
+            return lastSid
+
+        }
 //        fun getsubjectname(subid: Int){
 //            "SELECT ${Columns.subjectname} from ${TABLE_NAME} where ${Columns.SUBJECTID}==${subid}"
 //         }
         // update subject to be written
+
 
         object Columns{
             val SUBJECTID = "subjectid"

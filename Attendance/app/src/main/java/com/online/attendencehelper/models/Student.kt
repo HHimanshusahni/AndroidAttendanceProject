@@ -1,6 +1,7 @@
 package com.online.attendencehelper.models
 
 data class Student (
-        var studentid :   Int,
-        var studentname : String
+        var studentId    : Int,
+        var studentName  : String,
+        var subjectId : Int
 )
