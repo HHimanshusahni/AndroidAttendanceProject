@@ -32,6 +32,7 @@
             android:layout_height="wrap_content"
             android:textCursorDrawable="@null"
             android:backgroundTint="#000000"
+
             />
         <EditText
             android:hint="Department"

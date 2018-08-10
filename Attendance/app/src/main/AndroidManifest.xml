@@ -19,17 +19,22 @@
             android:label="MY SCHEDULE" />
         <activity
             android:name=".Activities.AddSubject"
-            android:label="ADD SUBJECT" />
+            android:label="ADD SUBJECT"
+            android:noHistory="true"
+            />
         <activity
             android:name=".Activities.TakeAttendance"
-            android:label="TAKE ATTENDANCE" />
+            android:label="TAKE ATTENDANCE"
+            android:noHistory="true"
+            />
         <activity
             android:name=".Activities.ShowAttendanceReport"
             android:label="REPORT" />
         <activity
             android:name=".Activities.MainActivity"
             android:label="Attendance Helper"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

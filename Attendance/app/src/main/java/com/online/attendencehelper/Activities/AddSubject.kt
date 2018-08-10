@@ -39,19 +39,26 @@ class AddSubject : AppCompatActivity() {
         // store in tables
 
         btnSubmitSubject.setOnClickListener{
-            var subject:Subject = Subject(null,
-                            etSubjectName.text.toString(),
-                            Integer.valueOf(etYear.text.toString()),
-                            etDepartment.text.toString(),
-                            Integer.valueOf( etRollNo.text.toString())
-            )
 
-            val db = TableHelper(this).writableDatabase
-            SubjectTable.addSubject(db,subject)
-            actIntent = Intent(this, MainActivity::class.java)
-            startActivity(actIntent)
-            Toast.makeText(this,"Subject Added", Toast.LENGTH_SHORT).show()
+            if(etSubjectName.text.toString().length==0||
+                    etDepartment.text.toString().length==0||
+                    etRollNo.text.toString().length==0||
+                    etYear.text.toString().length==0){
+                Toast.makeText(this,"Empty Field!!",Toast.LENGTH_SHORT).show()
+            }else {
+                var subject: Subject = Subject(null,
+                        etSubjectName.text.toString(),
+                        Integer.valueOf(etYear.text.toString()),
+                        etDepartment.text.toString(),
+                        Integer.valueOf(etRollNo.text.toString())
+                )
 
+                val db = TableHelper(this).writableDatabase
+                SubjectTable.addSubject(db, subject)
+                actIntent = Intent(this, MainActivity::class.java)
+                startActivity(actIntent)
+                Toast.makeText(this, "Subject Added", Toast.LENGTH_SHORT).show()
+            }
 
         }
 
