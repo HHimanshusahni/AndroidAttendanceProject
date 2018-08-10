@@ -70,6 +70,11 @@ class AttendanceRecordTable {
             return attendanceRecordList
         }
 
+        fun deleteRowFromSubjectId(db:SQLiteDatabase,SubjectId :Int){
+
+
+            db.delete(TABLE_NAME,"${Columns.SUBJECTID}=?", arrayOf(SubjectId.toString()))
+        }
 
         object Columns {
             val ATTENDANCEID = "attendanceid"

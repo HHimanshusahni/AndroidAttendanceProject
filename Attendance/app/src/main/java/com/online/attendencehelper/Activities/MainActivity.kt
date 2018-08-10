@@ -1,6 +1,7 @@
 package com.online.attendencehelper.Activities
 import android.content.Context
 import android.content.Intent
+import android.database.sqlite.SQLiteDatabase
 import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
@@ -12,11 +13,14 @@ import android.view.MenuItem
 import android.widget.Toast
 import com.online.attendencehelper.R
 import com.online.attendencehelper.adapters.ShowSubjectRecyclerAdapter
+import com.online.attendencehelper.db.tables.AttendanceRecordTable
 import com.online.attendencehelper.db.tables.SubjectTable
 import com.online.attendencehelper.db.tables.TableHelper
+import com.online.attendencehelper.models.AttendanceRecord
 import com.online.attendencehelper.models.Subject
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_nav.*
+import kotlinx.android.synthetic.main.list_item_show_subject.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -100,8 +104,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.nav_delete_database ->{
                applicationContext .deleteDatabase("AttendanceDatabase.db")
                 Toast.makeText(this,"Database Deleted",Toast.LENGTH_SHORT).show()
-                finish()
-                startActivity(getIntent())
+                this.recreate()
             }
 
         }
@@ -119,7 +122,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 //            subjectList.add(Subject(i.subjectid,i.subjectname,i.year,i.department,i.totalrollnos))
 //        }
         rvShowSubject.layoutManager = LinearLayoutManager(this)
-        ShowSubjectAdapter = ShowSubjectRecyclerAdapter(subjectList,{subject -> subjectItemClicked(subject) })
+        ShowSubjectAdapter = ShowSubjectRecyclerAdapter(
+                subjectList,
+                {subject -> subjectItemClicked(subject) },
+                {Int->subjectItemDeleteClicked(Int)})
         rvShowSubject.adapter = ShowSubjectAdapter
 
 
@@ -131,6 +137,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         startActivity(actIntent)
 
 
+
+    }
+    private fun subjectItemDeleteClicked(subjectId:Int){
+        val db = TableHelper(this).writableDatabase
+        SubjectTable.deleteRowFromId(db,subjectId)
+        AttendanceRecordTable.deleteRowFromSubjectId(db,subjectId)
+
+        this.recreate()
+        Toast.makeText(this,"Subject Deleted ",Toast.LENGTH_SHORT).show()
 
     }
 

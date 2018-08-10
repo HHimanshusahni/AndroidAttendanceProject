@@ -1,6 +1,7 @@
 package com.online.attendencehelper.db.tables
 
 import android.content.ContentValues
+import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import com.online.attendencehelper.models.Subject
@@ -116,6 +117,11 @@ class SubjectTable{
 
         }
 
+         fun deleteRowFromId(db:SQLiteDatabase,subjectId :Int){
+
+
+             db.delete(TABLE_NAME,"${Columns.SUBJECTID}=?", arrayOf(subjectId.toString()))
+        }
 //        fun getsubjectname(subid: Int){
 //            "SELECT ${Columns.subjectname} from ${TABLE_NAME} where ${Columns.SUBJECTID}==${subid}"
 //         }
