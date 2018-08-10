@@ -1,4 +1,5 @@
 package com.online.attendencehelper.Activities
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.NavigationView
@@ -8,6 +9,7 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import com.online.attendencehelper.R
 import com.online.attendencehelper.adapters.ShowSubjectRecyclerAdapter
 import com.online.attendencehelper.db.tables.SubjectTable
@@ -94,6 +96,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
             R.id.nav_settings ->{
 
+            }
+            R.id.nav_delete_database ->{
+               applicationContext .deleteDatabase("AttendanceDatabase.db")
+                Toast.makeText(this,"Database Deleted",Toast.LENGTH_SHORT).show()
+
+                actIntent = Intent(this, MainActivity::class.java)
+                startActivity(actIntent)
             }
 
         }
