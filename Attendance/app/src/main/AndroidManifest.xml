@@ -34,7 +34,6 @@
             android:name=".Activities.MainActivity"
             android:label="Attendance Helper"
             android:theme="@style/AppTheme.NoActionBar"
-            android:noHistory="true"
             >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

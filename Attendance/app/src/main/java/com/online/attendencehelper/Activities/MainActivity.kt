@@ -100,9 +100,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.nav_delete_database ->{
                applicationContext .deleteDatabase("AttendanceDatabase.db")
                 Toast.makeText(this,"Database Deleted",Toast.LENGTH_SHORT).show()
-
-                actIntent = Intent(this, MainActivity::class.java)
-                startActivity(actIntent)
+                finish()
+                startActivity(getIntent())
             }
 
         }
