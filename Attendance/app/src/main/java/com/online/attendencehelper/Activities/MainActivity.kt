@@ -125,7 +125,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         ShowSubjectAdapter = ShowSubjectRecyclerAdapter(
                 subjectList,
                 {subject -> subjectItemClicked(subject) },
-                {Int->subjectItemDeleteClicked(Int)})
+                {Int->subjectItemDeleteClicked(Int)},{Int -> editItemClicked(Int)})
         rvShowSubject.adapter = ShowSubjectAdapter
 
 
@@ -147,6 +147,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         this.recreate()
         Toast.makeText(this,"Subject Deleted ",Toast.LENGTH_SHORT).show()
 
+    }
+    private fun editItemClicked(subjectId: Int){
+
+        actIntent = Intent(this,AddSubject::class.java)
+        actIntent.putExtra("subject_id",subjectId)
+        startActivity(actIntent)
     }
 
 }

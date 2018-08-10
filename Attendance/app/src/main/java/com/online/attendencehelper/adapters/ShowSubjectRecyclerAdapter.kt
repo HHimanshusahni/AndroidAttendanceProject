@@ -13,7 +13,8 @@ import kotlinx.android.synthetic.main.list_item_show_subject.view.*
 class ShowSubjectRecyclerAdapter(
         val subjects : ArrayList<Subject>,
         val clickListener: (Subject) -> Unit, // The return type is unit as click handler does not need to return anything
-        val clickdeleteListener:(Int) ->Unit
+        val clickdeleteListener:(Int) ->Unit,
+        val clickeditListener:(Int)->Unit
 ) :RecyclerView.Adapter<ShowSubjectRecyclerAdapter.ShowSubjectViewHolder>(){
 
 
@@ -28,20 +29,30 @@ class ShowSubjectRecyclerAdapter(
     override fun onBindViewHolder(holder: ShowSubjectViewHolder, position: Int) {
 
 
-        (holder as ShowSubjectViewHolder).bind(subjects[position],clickListener,clickdeleteListener)
+        (holder as ShowSubjectViewHolder).bind(subjects[position],clickListener,clickdeleteListener,clickeditListener)
     }
 
 
     class ShowSubjectViewHolder(itemView: View):RecyclerView.ViewHolder(itemView) {
-        fun bind(subject: Subject,clickListener: (Subject) -> Unit,clickdeleteListener: (Int) -> Unit){
+        fun bind(subject: Subject,clickListener:
+                (Subject) -> Unit,clickdeleteListener: (Int) -> Unit,
+                 clickeditListener: (Int) -> Unit){
+
             itemView.tvSubjectName.text = subject.subjectname
             itemView.tvSubjectDeparment.text = subject.department
             itemView.tvSubjectDeparment.text = subject.department
-            itemView.tvSubjectYear.text = "-${subject.year.toString()}"
+            itemView.tvSubjectYear.text = "${subject.year.toString()}"
             itemView.tvtotalrollnos.text = subject.totalrollnos.toString()
-            itemView.setOnClickListener{clickListener(subject)}
+
+            itemView.setOnClickListener{
+                clickListener(subject)
+            }
+
             itemView.btnDeleteSubject.setOnClickListener{
                 clickdeleteListener(subject.subjectid!!)
+            }
+            itemView.btnEditSubject.setOnClickListener{
+                clickeditListener(subject.subjectid!!)
             }
 
 

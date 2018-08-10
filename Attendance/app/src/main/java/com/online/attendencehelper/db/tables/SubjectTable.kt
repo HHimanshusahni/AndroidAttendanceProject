@@ -122,6 +122,15 @@ class SubjectTable{
 
              db.delete(TABLE_NAME,"${Columns.SUBJECTID}=?", arrayOf(subjectId.toString()))
         }
+        fun editSubject(db:SQLiteDatabase,subject: Subject){
+            val row = ContentValues()
+            row.put(Columns.SUBJECTID,subject.subjectid)
+            row.put(Columns.SUBJECTNAME,subject.subjectname)
+            row.put(Columns.YEAR,subject.year)
+            row.put(Columns.DEPARTMENT,subject.department)
+            row.put(Columns.TOTALROLLNOS,subject.totalrollnos)
+            db.update(TABLE_NAME,row,"${Columns.SUBJECTID}="+subject.subjectid,null)
+        }
 //        fun getsubjectname(subid: Int){
 //            "SELECT ${Columns.subjectname} from ${TABLE_NAME} where ${Columns.SUBJECTID}==${subid}"
 //         }

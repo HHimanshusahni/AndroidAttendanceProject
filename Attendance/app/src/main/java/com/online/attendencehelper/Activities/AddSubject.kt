@@ -4,6 +4,7 @@ package com.online.attendencehelper.Activities
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.*
 import com.online.attendencehelper.R
 import com.online.attendencehelper.datetime.DateTime
@@ -13,17 +14,24 @@ import com.online.attendencehelper.db.tables.TableHelper
 import com.online.attendencehelper.models.Subject
 
 import kotlinx.android.synthetic.main.activity_add_subject.*
+import kotlinx.android.synthetic.main.activity_add_subject.view.*
 
 class AddSubject : AppCompatActivity() {
 
 
     lateinit  var actIntent: Intent
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_subject)
+        var subjectid:Int? =getIntent().getIntExtra("subject_id",-1)
+        Log.d("SUBB","$subjectid")
+        if(subjectid!=-1&&subjectid!=null) {
 
+            editSubject(subjectid!!)
+        }else{
+            subjectid =null
+        }
         val datetime = DateTime()
         datetime.setTime(btnTime)
 
@@ -46,15 +54,22 @@ class AddSubject : AppCompatActivity() {
                     etYear.text.toString().length==0){
                 Toast.makeText(this,"Empty Field!!",Toast.LENGTH_SHORT).show()
             }else {
-                var subject: Subject = Subject(null,
+
+                var subject: Subject = Subject(subjectid,
                         etSubjectName.text.toString(),
                         Integer.valueOf(etYear.text.toString()),
                         etDepartment.text.toString(),
                         Integer.valueOf(etRollNo.text.toString())
                 )
-
                 val db = TableHelper(this).writableDatabase
-                SubjectTable.addSubject(db, subject)
+
+
+                if(subjectid!=-1&&subjectid!=null) {
+                    SubjectTable.editSubject(db, subject)
+                }else{
+                    SubjectTable.addSubject(db,subject)
+                }
+
                 actIntent = Intent(this, MainActivity::class.java)
                 startActivity(actIntent)
                 Toast.makeText(this, "Subject Added", Toast.LENGTH_SHORT).show()
@@ -77,6 +92,15 @@ class AddSubject : AppCompatActivity() {
         )
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinner.setAdapter(adapter)
+
+    }
+    private fun editSubject(subjectId:Int){
+        val db = TableHelper(this).readableDatabase
+        val subject = SubjectTable.getSubjectFromId(db, subjectId)
+        etSubjectName.setText(subject.subjectname)
+        etDepartment.setText(subject.department)
+        etRollNo.setText(""+subject.totalrollnos)
+        etYear.setText(""+subject.year)
 
     }
 
