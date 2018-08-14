@@ -1,7 +1,6 @@
 package com.online.attendencehelper.adapters
 
 import android.content.Context
-import android.content.Intent
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -13,8 +12,9 @@ import kotlinx.android.synthetic.main.list_item_show_subject.view.*
 class ShowSubjectRecyclerAdapter(
         val subjects : ArrayList<Subject>,
         val clickListener: (Subject) -> Unit, // The return type is unit as click handler does not need to return anything
-        val clickdeleteListener:(Int) ->Unit,
-        val clickeditListener:(Int)->Unit
+        val clickDeleteListener:(Int) ->Unit,
+        val clickEditListener:(Int)->Unit,
+        val clickedStudentListener:(Int)->Unit
 ) :RecyclerView.Adapter<ShowSubjectRecyclerAdapter.ShowSubjectViewHolder>(){
 
 
@@ -29,14 +29,17 @@ class ShowSubjectRecyclerAdapter(
     override fun onBindViewHolder(holder: ShowSubjectViewHolder, position: Int) {
 
 
-        (holder as ShowSubjectViewHolder).bind(subjects[position],clickListener,clickdeleteListener,clickeditListener)
+        (holder as ShowSubjectViewHolder).bind(subjects[position],clickListener,clickDeleteListener,clickEditListener,clickedStudentListener)
     }
 
 
     class ShowSubjectViewHolder(itemView: View):RecyclerView.ViewHolder(itemView) {
-        fun bind(subject: Subject,clickListener:
-                (Subject) -> Unit,clickdeleteListener: (Int) -> Unit,
-                 clickeditListener: (Int) -> Unit){
+        fun bind(subject: Subject,
+                 clickListener: (Subject) -> Unit,
+                 clickdeleteListener: (Int) -> Unit,
+                 clickeditListener: (Int) -> Unit,
+                 clickedStudentListener: (Int) -> Unit
+                ){
 
             itemView.tvSubjectName.text = subject.subjectname
             itemView.tvSubjectDeparment.text = subject.department
@@ -53,6 +56,9 @@ class ShowSubjectRecyclerAdapter(
             }
             itemView.btnEditSubject.setOnClickListener{
                 clickeditListener(subject.subjectid!!)
+            }
+            itemView.btnStudentName.setOnClickListener{
+                clickedStudentListener(subject.subjectid!!)
             }
 
 

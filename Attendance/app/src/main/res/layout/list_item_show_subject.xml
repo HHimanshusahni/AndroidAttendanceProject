@@ -64,7 +64,15 @@
             android:background="@color/colorWhite"
             android:src="@drawable/ic_delete_black_24dp"
             android:id="@+id/btnDeleteSubject"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content" />
+        <ImageButton
+            android:background="@color/colorWhite"
+            android:id="@+id/btnStudentName"
+            android:src="@drawable/ic_student"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content" />
 
 

@@ -125,7 +125,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         ShowSubjectAdapter = ShowSubjectRecyclerAdapter(
                 subjectList,
                 {subject -> subjectItemClicked(subject) },
-                {Int->subjectItemDeleteClicked(Int)},{Int -> editItemClicked(Int)})
+                {Int->subjectItemDeleteClicked(Int)},
+                {Int -> editItemClicked(Int)},
+                {Int -> editStudentNameClicked(Int)})
         rvShowSubject.adapter = ShowSubjectAdapter
 
 
@@ -152,6 +154,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         actIntent = Intent(this,AddSubject::class.java)
         actIntent.putExtra("subject_id",subjectId)
+        startActivity(actIntent)
+    }
+    private fun editStudentNameClicked(subjectId: Int){
+        actIntent = Intent(this,StudentEditActivity::class.java)
+        actIntent.putExtra("SubjectIdForStudentName",subjectId)
         startActivity(actIntent)
     }
 
