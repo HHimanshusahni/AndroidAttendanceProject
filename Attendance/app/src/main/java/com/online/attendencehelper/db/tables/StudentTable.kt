@@ -2,6 +2,7 @@ package com.online.attendencehelper.db.tables
 
 import android.content.ContentValues
 import android.database.sqlite.SQLiteDatabase
+import android.util.Log
 import com.online.attendencehelper.models.Student
 
 class StudentTable{
@@ -57,6 +58,13 @@ class StudentTable{
             }
             return studentList
         }
+        fun changeStudentname(db: SQLiteDatabase,subjectId: Int,studentId: Int,studentName:String){
+            val row = ContentValues()
+            row.put(Columns.STUDENTNAME,studentName)
+            Log.d("EDIT","\nchangestudent Name"+studentName+"\nstudentid"+studentId)
+            db.update(TABLE_NAME,row,"${Columns.STUDENTID}="+studentId +" AND ${Columns.SUBJECTID}="+subjectId,null)
+        }
+
     }
 
 
