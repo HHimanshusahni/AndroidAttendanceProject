@@ -3,6 +3,7 @@ package com.online.attendencehelper.Activities
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AlertDialog
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.widget.ArrayAdapter
@@ -52,12 +53,22 @@ class ShowAttendanceReport : AppCompatActivity() {
 
     }
     private fun onDeleteButtonClicked(attendanceId:Int){
-        val db = TableHelper(this).writableDatabase
-        AttendanceRecordTable.deleteRowFromAttendanceId(db,attendanceId)
-        AttendanceTable.deleteRowFromAttendanceId(db,attendanceId)
+        var builder = AlertDialog.Builder(this)
+        builder.setMessage("Do you want to delete the report")
+                .setPositiveButton("OK",{dialog, which ->
+                    val db = TableHelper(this).writableDatabase
+                    AttendanceRecordTable.deleteRowFromAttendanceId(db,attendanceId)
+                    AttendanceTable.deleteRowFromAttendanceId(db,attendanceId)
+                    Toast.makeText(this,"Report Deleted ",Toast.LENGTH_SHORT).show()
+                    this.recreate()
 
-        this.recreate()
-        Toast.makeText(this,"Report Deleted ",Toast.LENGTH_SHORT).show()
+                })
+                .setNegativeButton("Cancel",{dialog, which ->
+                    Toast.makeText(this,"Cancelled",Toast.LENGTH_SHORT).show()
+                })
+                .create()
+                .show()
+
 
     }
 

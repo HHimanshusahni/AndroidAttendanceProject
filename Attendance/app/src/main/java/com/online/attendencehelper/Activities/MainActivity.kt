@@ -1,11 +1,13 @@
 package com.online.attendencehelper.Activities
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.database.sqlite.SQLiteDatabase
 import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
+import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
@@ -102,9 +104,20 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
             }
             R.id.nav_delete_database ->{
-               applicationContext .deleteDatabase("AttendanceDatabase.db")
-                Toast.makeText(this,"Database Deleted",Toast.LENGTH_SHORT).show()
-                this.recreate()
+                val builder = AlertDialog.Builder(this)
+                builder.setMessage("All the subjects and reports will be deleted")
+                        .setTitle("Warning!!!")
+                builder.setPositiveButton("Yes",{dialog, id->
+                    applicationContext .deleteDatabase("AttendanceDatabase.db")
+                    Toast.makeText(this,"Database Deleted",Toast.LENGTH_SHORT).show()
+                    this.recreate()
+                })
+                builder.setNegativeButton("No",DialogInterface.OnClickListener{
+                    dialog, id ->
+                    this.recreate()
+                })
+                builder.create()
+                builder.show()
             }
 
         }
@@ -142,12 +155,26 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     }
     private fun subjectItemDeleteClicked(subjectId:Int){
-        val db = TableHelper(this).writableDatabase
-        SubjectTable.deleteRowFromId(db,subjectId)
-        AttendanceRecordTable.deleteRowFromSubjectId(db,subjectId)
 
-        this.recreate()
-        Toast.makeText(this,"Subject Deleted ",Toast.LENGTH_SHORT).show()
+        AlertDialog.Builder(this)
+                .setMessage("Do you want to delete the subject and its reports?")
+                .setNegativeButton("Cancel",{dialog, which ->
+                    this.recreate()
+                })
+                .setPositiveButton("OK",{ dialog, which ->
+
+                    val db = TableHelper(this).writableDatabase
+                    SubjectTable.deleteRowFromId(db,subjectId)
+                    AttendanceRecordTable.deleteRowFromSubjectId(db,subjectId)
+
+                    this.recreate()
+                    Toast.makeText(this,"Subject Deleted ",Toast.LENGTH_SHORT).show()
+
+
+                })
+                .create()
+                .show()
+
 
     }
     private fun editItemClicked(subjectId: Int){

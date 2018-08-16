@@ -50,7 +50,7 @@ class AttendanceRecyclerAdapter(
 
         }
 //        holder.itemView.setOnLongClickListener{
-//            AlertDialog.Builder(holder.itemView.context)
+//            AlertClass.Builder(holder.itemView.context)
 //                    .setTitle("Update studentName")
 //                    .setMessage("Do you really want to update student name?")
 //                    .setPositiveButton(

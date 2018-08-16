@@ -1,9 +1,12 @@
 package com.online.attendencehelper.Activities
 
+import android.app.PendingIntent.getActivity
+import android.content.DialogInterface
 import android.content.Intent
 import android.database.sqlite.SQLiteDatabase
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AlertDialog
 import android.support.v7.widget.LinearLayoutManager
 import android.widget.Toast
 import com.online.attendencehelper.R
@@ -20,6 +23,9 @@ import com.online.attendencehelper.models.AttendanceRecord
 import com.online.attendencehelper.models.Student
 import com.online.attendencehelper.models.Subject
 import kotlinx.android.synthetic.main.activity_take_attendance.*
+import android.R.string.ok
+
+
 
 class TakeAttendance : AppCompatActivity() {
 
@@ -86,11 +92,29 @@ class TakeAttendance : AppCompatActivity() {
         }
 
         btnFabSubmit.setOnClickListener {
-            submitData(db)
 
-            actIntent = Intent(this, MainActivity::class.java)
-            startActivity(actIntent)
-            Toast.makeText(this,"Attendance Submitted",Toast.LENGTH_SHORT).show()
+
+            val builder = AlertDialog.Builder(this)
+            builder.setMessage("Do you want to submit")
+                    .setTitle("");
+
+            builder.setPositiveButton("OK",  { dialog, id ->
+                // User clicked OK button
+                submitData(db)
+
+                actIntent = Intent(this, MainActivity::class.java)
+                startActivity(actIntent)
+                Toast.makeText(this, "Attendance Submitted", Toast.LENGTH_SHORT).show()
+
+            })
+            builder.setNegativeButton("Cancel",DialogInterface.OnClickListener{
+                dialog, id ->
+                Toast.makeText(this,"Submission Cancelled",Toast.LENGTH_SHORT).show()
+            })
+
+            builder.create()
+            builder.show()
+
         }
 
 
