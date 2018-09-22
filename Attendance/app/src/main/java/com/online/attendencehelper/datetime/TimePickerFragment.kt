@@ -1,5 +1,6 @@
 package com.online.attendencehelper.datetime
 
+import android.app.AlertDialog
 import android.app.Dialog
 import android.app.DialogFragment
 import android.app.TimePickerDialog
@@ -39,7 +40,7 @@ class TimePickerFragment (var textView: TextView): DialogFragment(), TimePickerD
         // Return the TimePickerDialog
         return TimePickerDialog(
                 activity, // Context
-                android.R.style.Theme_Holo_Light_Dialog_NoActionBar_MinWidth, // Theme
+                0, // Theme
                 this, // TimePickerDialog.OnTimeSetListener
                 hour, // Hour of day
                 minute, // Minute

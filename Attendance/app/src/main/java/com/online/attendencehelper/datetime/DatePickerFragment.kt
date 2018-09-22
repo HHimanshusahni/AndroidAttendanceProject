@@ -47,7 +47,7 @@ class DatePickerFragment (val textView: TextView): DialogFragment(), DatePickerD
         return DatePickerDialog(
                 activity, // Context
                 // Put 0 to system default theme or remove this parameter
-                android.R.style.Theme_Holo_Light_Dialog_NoActionBar_MinWidth, // Theme
+                0, // Theme
                 this, // DatePickerDialog.OnDateSetListener
                 year, // Year
                 month, // Month of year
