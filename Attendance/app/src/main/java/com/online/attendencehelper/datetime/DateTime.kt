@@ -30,4 +30,11 @@ class DateTime{
         val dayString = sdf.format(day)
         textView.setText(dayString)
     }
+    fun getTime():String{
+        val date = System.currentTimeMillis()
+
+        val sdf = SimpleDateFormat(" h:mm a")
+        return  sdf.format(date)
+
+    }
 }

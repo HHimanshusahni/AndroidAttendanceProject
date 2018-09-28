@@ -2,6 +2,7 @@ package com.online.attendencehelper.Activities
 
 
 import android.content.Intent
+import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -17,12 +18,16 @@ import com.online.attendencehelper.models.Subject
 
 import kotlinx.android.synthetic.main.activity_add_subject.*
 import kotlinx.android.synthetic.main.activity_add_subject.view.*
+import android.widget.TextView
+
+
 
 class AddSubject : AppCompatActivity() {
 
 
     lateinit  var actIntent: Intent
-
+    lateinit var linearLayoutNewView :LinearLayout
+    lateinit var btn :Button;
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_subject)
@@ -48,6 +53,10 @@ class AddSubject : AppCompatActivity() {
 
         // store in tables
 
+        btnAddNew.setOnClickListener{
+           addDynamicLayoutSchedule()
+
+        }
         btnSubmitSubject.setOnClickListener{
 
             if(etSubjectName.text.toString().length==0||
@@ -111,6 +120,43 @@ class AddSubject : AppCompatActivity() {
         etDepartment.setText(subject.department)
         etRollNo.setText(""+subject.totalrollnos)
         etYear.setText(""+subject.year)
+
+    }
+    private fun addDynamicLayoutSchedule(){
+        var linearLayout = LinearLayout(this)
+        linearLayoutNewView = findViewById(R.id.parentLinearSchdule)
+
+
+        var buttontime = Button(this)
+        val datatime = DateTime()
+        buttontime.setText(datatime.getTime())
+        buttontime.setOnClickListener{
+            val newFragment = TimePickerFragment(buttontime)
+            // Show the time picker dialog
+            newFragment.show(fragmentManager, "Time Picker")
+        }
+
+
+
+        val spinner  = Spinner(this)
+        val adapter: ArrayAdapter<CharSequence> = ArrayAdapter.createFromResource(
+                this,
+                R.array.days_array,
+                android.R.layout.simple_spinner_item
+        )
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinner.setAdapter(adapter)
+
+
+
+        var deleteButton = Button(this)
+        deleteButton.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_delete_black_24dp, 0, 0, 0);
+        deleteButton.setBackgroundColor(Color.TRANSPARENT)
+        linearLayout.setOrientation(LinearLayout.HORIZONTAL)
+        linearLayout.addView(buttontime)
+        linearLayout.addView(spinner)
+        linearLayout.addView(deleteButton)
+        linearLayoutNewView.addView(linearLayout)
 
     }
 
