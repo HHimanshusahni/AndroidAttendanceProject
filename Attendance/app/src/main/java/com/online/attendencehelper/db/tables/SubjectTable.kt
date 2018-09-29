@@ -151,7 +151,7 @@ class SubjectTable{
 
 
         object Columns{
-            val SUBJECTID = "subjectid"
+            val SUBJECTID = "subjectId"
             val SUBJECTNAME = "subjectname"
             val YEAR = "year"
             val DEPARTMENT ="department"

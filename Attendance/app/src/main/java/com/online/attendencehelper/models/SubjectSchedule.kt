@@ -1,7 +1,7 @@
 package com.online.attendencehelper.models
 
 data class SubjectSchedule(
-        var subjectid: Int?,
+        var subjectId: Int?,
         var timings: String,
         var days :String
 )

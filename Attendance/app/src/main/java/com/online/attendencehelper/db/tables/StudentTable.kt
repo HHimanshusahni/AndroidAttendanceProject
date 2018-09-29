@@ -71,7 +71,7 @@ class StudentTable{
         object Columns {
             val STUDENTID = "studentid"
             val STUDENTNAME = "studentname"
-            val SUBJECTID = "subjectid"
+            val SUBJECTID = "subjectId"
         }
 
 }

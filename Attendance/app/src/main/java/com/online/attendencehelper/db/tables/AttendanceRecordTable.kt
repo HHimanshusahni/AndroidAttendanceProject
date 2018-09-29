@@ -81,7 +81,7 @@ class AttendanceRecordTable {
 
         object Columns {
             val ATTENDANCEID = "attendanceid"
-            val SUBJECTID = "subjectid"
+            val SUBJECTID = "subjectId"
             val DATE = "date"
             val TIME = "time"
 

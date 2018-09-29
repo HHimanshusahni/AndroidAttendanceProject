@@ -12,6 +12,7 @@ class TableHelper (context:Context):SQLiteOpenHelper(context, DB_NAME,null, DB_V
             it.execSQL(AttendanceTable.CMD_CREATE_TABLE)
             it.execSQL(AttendanceRecordTable.CMD_CREATE_TABLE)
             it.execSQL(StudentTable.CMD_CREATE_TABLE)
+            it.execSQL(SubjectScheduleTable.CMD_CREATE_TABLE)
         }
     }
 

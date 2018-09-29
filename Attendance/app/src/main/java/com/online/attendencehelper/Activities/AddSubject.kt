@@ -5,6 +5,7 @@
     import android.content.Intent
     import android.support.v7.app.AppCompatActivity
     import android.os.Bundle
+    import android.util.Log
     import android.view.View
     import android.widget.*
     import com.online.attendencehelper.R
@@ -18,6 +19,8 @@
 
     import kotlinx.android.synthetic.main.activity_add_subject.*
     import android.view.LayoutInflater
+    import com.online.attendencehelper.db.tables.SubjectScheduleTable
+    import com.online.attendencehelper.models.SubjectSchedule
     import kotlinx.android.synthetic.main.schedule_field.view.*
 
 
@@ -26,12 +29,13 @@
 
         lateinit  var actIntent: Intent;
         lateinit var  parentLinearLayout:LinearLayout
+        lateinit var arrayListOfView: ArrayList<View>
 
 
         override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
             setContentView(R.layout.activity_add_subject)
-
+            arrayListOfView = ArrayList()
             parentLinearLayout = LinearLayout(this)
             parentLinearLayout= findViewById(R.id.parentLinearSchdule)
 
@@ -52,6 +56,7 @@
 
 
             }
+
 
 
         }
@@ -81,13 +86,23 @@
                     SubjectTable.editSubject(db, subject)
                 }else{
                     SubjectTable.addSubject(db,subject)
-
                     val lastSubjectId = SubjectTable.lastSubjectId(db)
                     val studentList =  ArrayList<Student>()
                     for( i  in 1..subject.totalrollnos){
                         studentList.add( Student(i,"Student"+i, lastSubjectId))
                     }
                     StudentTable.addStudents(db,studentList)
+                }
+
+
+                for(view in arrayListOfView){
+                    var subjectSchedule: SubjectSchedule = SubjectSchedule(
+                            SubjectTable.lastSubjectId(db),
+                            view.btnTime.text.toString(),
+                            view.spinnerDays.selectedItem.toString())
+                    SubjectScheduleTable.addSchedule(db,subjectSchedule)
+
+
                 }
                 // Modify Code  for case Rollno's entered as different range of roll no's required and skipped  rollno's
                 actIntent = Intent(this, MainActivity::class.java)
@@ -120,6 +135,8 @@
 
             val datetime = DateTime()
             datetime.setTime(parentLinearLayout.getChildAt(parentLinearLayout.childCount-1).btnTime)
+
+            arrayListOfView.add(rowView)
 
 
         }

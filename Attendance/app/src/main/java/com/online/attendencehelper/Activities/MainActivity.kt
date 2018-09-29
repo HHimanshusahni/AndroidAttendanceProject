@@ -132,7 +132,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 //
 //        for (i in subject){
 //
-//            subjectList.add(Subject(i.subjectid,i.subjectname,i.year,i.department,i.totalrollnos))
+//            subjectList.add(Subject(i.subjectId,i.subjectname,i.year,i.department,i.totalrollnos))
 //        }
         rvShowSubject.layoutManager = LinearLayoutManager(this)
         ShowSubjectAdapter = ShowSubjectRecyclerAdapter(

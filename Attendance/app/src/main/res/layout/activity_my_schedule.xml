@@ -3,50 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
         tools:context=".Activities.TakeAttendance"
+        android:id="@+id/parentLinearSchdule"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-    <Button
-        android:text="Monday"
-        android:textSize="35sp"
-        android:textAlignment="center"
+    <TextView
+        android:id="@+id/tvDemoSchedule"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <Button
-        android:text="Tuesday"
-        android:textSize="35sp"
-        android:textAlignment="center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <Button
-        android:text="Wednesday"
-        android:textSize="35sp"
-        android:textAlignment="center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <Button
-        android:text="Thursday"
-        android:textSize="35sp"
-        android:textAlignment="center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <Button
-        android:text="Friday"
-        android:textSize="35sp"
-        android:textAlignment="center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <Button
-        android:text="Saturday"
-        android:textSize="35sp"
-        android:textAlignment="center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <Button
-        android:text="Sunday"
-        android:textSize="35sp"
-        android:textAlignment="center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent" />
+
+
+
     </LinearLayout>
 
