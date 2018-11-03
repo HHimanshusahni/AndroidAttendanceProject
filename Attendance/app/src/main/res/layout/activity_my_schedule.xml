@@ -1,74 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-        tools:context=".Activities.TakeAttendance"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="10dp"
+    tools:context=".Activities.TakeAttendance">
 
-
-        android:id="@+id/parentLinearSchdule"
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tabs_main"
+        app:tabMode="scrollable"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
 
-    <Button
-        android:id="@+id/btnMonday"
+    </android.support.design.widget.TabLayout>
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager_main"
         android:layout_width="match_parent"
-        android:text="Monday"
-        android:layout_weight="1"
-        android:layout_height = "0dp"/>
-
-    <Button
-        android:id="@+id/btnTuesday"
-        android:layout_width="match_parent"
-        android:text="Tuesday"
-        android:layout_weight="1"
-        android:layout_height = "0dp"/>
-    <Button
-        android:id="@+id/btnWednesday"
-        android:layout_width="match_parent"
-        android:text="Wednesday"
-        android:layout_weight="1"
-        android:layout_height = "0dp"/>
-    <Button
-        android:id="@+id/btnThursday"
-        android:layout_width="match_parent"
-        android:text="Thursday"
-        android:layout_weight="1"
-        android:layout_height = "0dp"/>
-
-    <Button
-        android:id="@+id/btnFriday"
-        android:layout_width="match_parent"
-        android:text="Friday"
-        android:layout_weight="1"
-        android:layout_height = "0dp"/>
-
-    <Button
-        android:id="@+id/btnSaturday"
-        android:layout_width="match_parent"
-        android:text="Saturday"
-        android:layout_weight="1"
-        android:layout_height = "0dp"/>
-
-    <Button
-        android:id="@+id/btnSunday"
-        android:layout_width="match_parent"
-        android:text="Sunday"
-        android:layout_weight="1"
-        android:layout_height = "0dp"/>
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_weight="3.5"
-        android:layout_height="0dp">
-    <TextView
-        android:id="@+id/tvDemoSchedule"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-    </ScrollView>
-
-  
-
-
+        android:layout_height="wrap_content">
+    </android.support.v4.view.ViewPager>
 </LinearLayout>

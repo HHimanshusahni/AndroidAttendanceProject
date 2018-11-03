@@ -73,7 +73,9 @@
                         etRollNo.text.toString().length==0||
                         etYear.text.toString().length==0){
                     Toast.makeText(this,"Empty Field!!",Toast.LENGTH_SHORT).show()
-                }else {
+                }else if (etRollNo.text.toString().toInt()>500){
+                    Toast.makeText(this,"Can't enter more than 500 student in class",Toast.LENGTH_SHORT).show()
+                }else{
 
                     var subject: Subject = Subject(subjectid,
                             etSubjectName.text.toString(),
