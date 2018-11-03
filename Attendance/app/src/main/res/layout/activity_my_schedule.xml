@@ -1,18 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
         tools:context=".Activities.TakeAttendance"
+
+
         android:id="@+id/parentLinearSchdule"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
+    <Button
+        android:id="@+id/btnMonday"
+        android:layout_width="match_parent"
+        android:text="Monday"
+        android:layout_weight="1"
+        android:layout_height = "0dp"/>
+
+    <Button
+        android:id="@+id/btnTuesday"
+        android:layout_width="match_parent"
+        android:text="Tuesday"
+        android:layout_weight="1"
+        android:layout_height = "0dp"/>
+    <Button
+        android:id="@+id/btnWednesday"
+        android:layout_width="match_parent"
+        android:text="Wednesday"
+        android:layout_weight="1"
+        android:layout_height = "0dp"/>
+    <Button
+        android:id="@+id/btnThursday"
+        android:layout_width="match_parent"
+        android:text="Thursday"
+        android:layout_weight="1"
+        android:layout_height = "0dp"/>
+
+    <Button
+        android:id="@+id/btnFriday"
+        android:layout_width="match_parent"
+        android:text="Friday"
+        android:layout_weight="1"
+        android:layout_height = "0dp"/>
+
+    <Button
+        android:id="@+id/btnSaturday"
+        android:layout_width="match_parent"
+        android:text="Saturday"
+        android:layout_weight="1"
+        android:layout_height = "0dp"/>
+
+    <Button
+        android:id="@+id/btnSunday"
+        android:layout_width="match_parent"
+        android:text="Sunday"
+        android:layout_weight="1"
+        android:layout_height = "0dp"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_weight="3.5"
+        android:layout_height="0dp">
     <TextView
         android:id="@+id/tvDemoSchedule"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+    </ScrollView>
+
+  
 
 
-
-    </LinearLayout>
-
+</LinearLayout>

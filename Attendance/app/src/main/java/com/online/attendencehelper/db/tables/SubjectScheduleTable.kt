@@ -39,8 +39,38 @@ class SubjectScheduleTable {
 
             )
             val subjectIdCol = cursor.getColumnIndex(Columns.SUBJECTID)
-            val timingsIdCol = cursor.getColumnIndex(Columns.DAYS)
-            val daysIdCol = cursor.getColumnIndex(Columns.TIMINGS)
+            val daysIdCol = cursor.getColumnIndex(Columns.DAYS)
+            val timingsIdCol = cursor.getColumnIndex(Columns.TIMINGS)
+            while(cursor.moveToNext()){
+                val rowTask = SubjectSchedule(
+                        cursor.getInt(subjectIdCol),
+                        cursor.getString(timingsIdCol),
+                        cursor.getString(daysIdCol)
+                )
+                subjectSchedulelist.add(rowTask)
+            }
+            cursor.close()
+            return  subjectSchedulelist
+        }
+
+
+        fun getScheduleFromSubjectDays(db:SQLiteDatabase,day:String):ArrayList<SubjectSchedule> {
+            val subjectSchedulelist = ArrayList<SubjectSchedule>()
+            val cursor = db.query(
+                    TABLE_NAME,
+                    arrayOf(Columns.SUBJECTID,
+                            Columns.TIMINGS,
+                            Columns.DAYS),
+                    Columns.DAYS+"=?",
+                    arrayOf(day.toString()),
+
+                    null, null,
+                    null
+
+            )
+            val subjectIdCol = cursor.getColumnIndex(Columns.SUBJECTID)
+            val daysIdCol = cursor.getColumnIndex(Columns.DAYS)
+            val timingsIdCol = cursor.getColumnIndex(Columns.TIMINGS)
             while(cursor.moveToNext()){
                 val rowTask = SubjectSchedule(
                         cursor.getInt(subjectIdCol),
@@ -56,6 +86,12 @@ class SubjectScheduleTable {
             val SUBJECTID  = "subjectId"
             val TIMINGS = "timings"
             val DAYS = "days"
+        }
+
+        fun deleteScheduleFromSubjectId(db:SQLiteDatabase,subjectId :Int){
+
+
+            db.delete(TABLE_NAME,"${Columns.SUBJECTID}=?", arrayOf(subjectId.toString()))
         }
     }
 }

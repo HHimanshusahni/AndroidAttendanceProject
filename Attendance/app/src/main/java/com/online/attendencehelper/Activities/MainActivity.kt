@@ -16,6 +16,7 @@ import android.widget.Toast
 import com.online.attendencehelper.R
 import com.online.attendencehelper.adapters.ShowSubjectRecyclerAdapter
 import com.online.attendencehelper.db.tables.AttendanceRecordTable
+import com.online.attendencehelper.db.tables.SubjectScheduleTable
 import com.online.attendencehelper.db.tables.SubjectTable
 import com.online.attendencehelper.db.tables.TableHelper
 import com.online.attendencehelper.models.AttendanceRecord
@@ -64,22 +65,24 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
     }
 
+/*
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.nav, menu)
         return true
     }
+*/
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+   /* override fun onOptionsItemSelected(item: MenuItem): Boolean {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         when (item.itemId) {
-            R.id.action_settings -> return true
+            R.id.action_settings -> return tru
             else -> return super.onOptionsItemSelected(item)
         }
     }
-
+*/
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         // Handle navigation view item clicks here.
         when (item.itemId) {
@@ -100,9 +103,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 startActivity(actIntent)
 
             }
-            R.id.nav_settings ->{
 
-            }
             R.id.nav_delete_database ->{
                 val builder = AlertDialog.Builder(this)
                 builder.setMessage("All the subjects and reports will be deleted")
@@ -166,7 +167,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     val db = TableHelper(this).writableDatabase
                     SubjectTable.deleteRowFromId(db,subjectId)
                     AttendanceRecordTable.deleteRowFromSubjectId(db,subjectId)
-
+                    SubjectScheduleTable.deleteScheduleFromSubjectId(db,subjectId)
                     this.recreate()
                     Toast.makeText(this,"Subject Deleted ",Toast.LENGTH_SHORT).show()
 

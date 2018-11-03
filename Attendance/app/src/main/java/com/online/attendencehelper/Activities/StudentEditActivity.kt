@@ -1,10 +1,13 @@
 package com.online.attendencehelper.Activities
 
+import android.content.DialogInterface
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AlertDialog
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
+import android.widget.Toast
 import com.online.attendencehelper.R
 import com.online.attendencehelper.adapters.StudentEditableAdapter
 import com.online.attendencehelper.db.tables.StudentTable
@@ -21,7 +24,7 @@ class StudentEditActivity : AppCompatActivity() {
     var studentList = ArrayList<Student>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        setTitle("CHANGE STUDENT NAME")
         val db = TableHelper(this).readableDatabase
 
         var subjectId:Int = getIntent().getIntExtra("SubjectIdForStudentName",0)
@@ -32,24 +35,39 @@ class StudentEditActivity : AppCompatActivity() {
         StudentEditableAdapter = StudentEditableAdapter(studentList)
         rvShowStudentName.adapter = StudentEditableAdapter
         btnFabSubmit.setOnClickListener{
-           var limit =  studentList.size
-            Log.d("EDIT","The value  of the limit is"+limit)
-            for(student in studentList){
+            val builder = AlertDialog.Builder(this)
+            builder.setMessage("Save edited student name")
+
+            builder.setPositiveButton("Yes",{dialog, id->
+
+                var limit =  studentList.size
+                for(student in studentList){
 
 
-                rvShowStudentName.findViewHolderForAdapterPosition(student.studentId)
-                StudentTable.changeStudentname(db,subjectId,student.studentId,"${student.studentName}")
-                Log.d("EDIT","For loop"+student.studentName+"\n")
-             }
-            Log.d("EDIT","After the Loop")
-            actIntent = Intent(this,MainActivity::class.java)
-            startActivity(actIntent)
+                    rvShowStudentName.findViewHolderForAdapterPosition(student.studentId)
+                    StudentTable.changeStudentname(db,subjectId,student.studentId,"${student.studentName}")
+
+                }
+
+                actIntent = Intent(this,MainActivity::class.java)
+                startActivity(actIntent)
+
+                Toast.makeText(this,"Student Name Edited", Toast.LENGTH_SHORT).show()
+                this.recreate()
+            })
+            builder.setNegativeButton("No", DialogInterface.OnClickListener{
+                dialog, id ->
+                this.recreate()
+            })
+            builder.create()
+            builder.show()
 
 
         }
         rvShowStudentName.setOnClickListener{
 
         }
+
 
     }
 }
