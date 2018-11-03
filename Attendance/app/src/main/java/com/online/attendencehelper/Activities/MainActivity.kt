@@ -30,7 +30,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     lateinit var actIntent : Intent
 
 
-//    var subjectList = ArrayList<Subject>()
     lateinit var ShowSubjectAdapter : ShowSubjectRecyclerAdapter
     lateinit var subjectObject: Subject
 
@@ -61,30 +60,24 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
             drawer_layout.closeDrawer(GravityCompat.START)
         } else {
-            super.onBackPressed()
+            AlertDialog.Builder(this)
+                    .setMessage("Do you want to exit?")
+                    .setPositiveButton("YES",{ dialog, which ->
+                      finish()
+
+                    })
+                    .setNegativeButton("NO",{dialog, which ->
+                        this.recreate()
+                    })
+
+                    .create()
+                    .show()
         }
+
     }
 
-/*
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.nav, menu)
-        return true
-    }
-*/
 
-   /* override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        when (item.itemId) {
-            R.id.action_settings -> return tru
-            else -> return super.onOptionsItemSelected(item)
-        }
-    }
-*/
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        // Handle navigation view item clicks here.
         when (item.itemId) {
 
             R.id.nav_schedule -> {
@@ -104,22 +97,22 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
             }
 
-            R.id.nav_delete_database ->{
-                val builder = AlertDialog.Builder(this)
-                builder.setMessage("All the subjects and reports will be deleted")
-                        .setTitle("Warning!!!")
-                builder.setPositiveButton("Yes",{dialog, id->
-                    applicationContext .deleteDatabase("AttendanceDatabase.db")
-                    Toast.makeText(this,"Database Deleted",Toast.LENGTH_SHORT).show()
-                    this.recreate()
-                })
-                builder.setNegativeButton("No",DialogInterface.OnClickListener{
-                    dialog, id ->
-                    this.recreate()
-                })
-                builder.create()
-                builder.show()
-            }
+//            R.id.nav_delete_database ->{
+//                val builder = AlertDialog.Builder(this)
+//                builder.setMessage("All the subjects and reports will be deleted")
+//                        .setTitle("Warning!!!")
+//                builder.setPositiveButton("Yes",{dialog, id->
+//                    applicationContext .deleteDatabase("AttendanceDatabase.db")
+//                    Toast.makeText(this,"Database Deleted",Toast.LENGTH_SHORT).show()
+//                    this.recreate()
+//                })
+//                builder.setNegativeButton("No",DialogInterface.OnClickListener{
+//                    dialog, id ->
+//                    this.recreate()
+//                })
+//                builder.create()
+//                builder.show()
+//            }
 
         }
 
@@ -130,11 +123,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private fun showSubject() {
         val db = TableHelper(this).readableDatabase
         val subjectList = SubjectTable.getAllSubject(db)
-//
-//        for (i in subject){
-//
-//            subjectList.add(Subject(i.subjectId,i.subjectname,i.year,i.department,i.totalrollnos))
-//        }
+
         rvShowSubject.layoutManager = LinearLayoutManager(this)
         ShowSubjectAdapter = ShowSubjectRecyclerAdapter(
                 subjectList,

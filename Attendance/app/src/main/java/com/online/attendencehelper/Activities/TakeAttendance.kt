@@ -120,8 +120,24 @@ class TakeAttendance : AppCompatActivity() {
 
 
 
+
     }
 
+    override fun onBackPressed() {
+        AlertDialog.Builder(this)
+                .setMessage("Do you want to cancel the attendance ")
+                .setNegativeButton("NO",{dialog, which ->
+
+                })
+                .setPositiveButton("YES",{ dialog, which ->
+            Toast.makeText(this,"Attendance Cancelled",Toast.LENGTH_SHORT).show()
+                    actIntent = Intent(this, MainActivity::class.java)
+                    startActivity(actIntent)
+
+                })
+                .create()
+                .show()
+    }
     // Submitting in the database
     private fun submitData(db:SQLiteDatabase){
 

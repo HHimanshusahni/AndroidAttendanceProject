@@ -42,10 +42,10 @@ class ShowSubjectRecyclerAdapter(
                 ){
 
             itemView.tvSubjectName.text = subject.subjectname
-            itemView.tvSubjectDeparment.text = subject.department
-            itemView.tvSubjectDeparment.text = subject.department
-            itemView.tvSubjectYear.text = "${subject.year.toString()}"
-            itemView.tvtotalrollnos.text = subject.totalrollnos.toString()
+            itemView.tvSubjectDeparment.text = "("+subject.department.toString()+")"
+//            itemView.tvSubjectDeparment.text = subject.department
+            itemView.tvSubjectYear.text = "${subject.year.toString()}"+"Year"
+            itemView.tvtotalrollnos.text = subject.totalrollnos.toString()+" Students"
 
             itemView.setOnClickListener{
                 clickListener(subject)

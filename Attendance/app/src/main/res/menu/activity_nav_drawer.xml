@@ -18,10 +18,6 @@
             android:icon="@drawable/ic_report"
             android:title="Report" />
 
-        <item android:id="@+id/nav_delete_database"
-            android:icon="@drawable/ic_delete_sweep_black_24dp"
-            android:title="Delete Database"
-            />
 
     </group>
 

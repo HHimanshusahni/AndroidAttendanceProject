@@ -70,4 +70,16 @@ class StudentEditActivity : AppCompatActivity() {
 
 
     }
+    override fun onBackPressed() {
+        AlertDialog.Builder(this)
+                .setMessage("Changes in names will be lost!!.\nDo you want to cancel?")
+                .setNegativeButton("Cancel",{dialog, which ->
+                    this.recreate()
+                })
+                .setPositiveButton("OK",{ dialog, which ->
+                    finish()
+                })
+                .create()
+                .show()
+    }
 }
