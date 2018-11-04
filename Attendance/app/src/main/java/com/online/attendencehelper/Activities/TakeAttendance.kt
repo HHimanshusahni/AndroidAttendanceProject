@@ -125,7 +125,7 @@ class TakeAttendance : AppCompatActivity() {
 
     override fun onBackPressed() {
         AlertDialog.Builder(this)
-                .setMessage("Do you want to cancel the attendance ")
+                .setMessage("Do you want to cancel the attendance ?")
                 .setNegativeButton("NO",{dialog, which ->
 
                 })
