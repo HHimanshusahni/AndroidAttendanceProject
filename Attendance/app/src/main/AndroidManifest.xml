@@ -29,9 +29,8 @@
             android:name=".Activities.ShowAttendanceReport"
             android:label="REPORT" />
         <activity
-            android:name=".Activities.MainActivity"
-            android:label="Attendance Helper"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:name=".Activities.LaunchScreen"
+            android:theme="@style/LaunchScreenTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -39,7 +38,12 @@
             </intent-filter>
         </activity>
         <activity android:name=".Activities.ShowAttendanceActivity" />
-        <activity android:name=".Activities.StudentEditActivity"></activity>
+        <activity android:name=".Activities.StudentEditActivity" />
+        <activity android:name=".Activities.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:label="Attendance Helper">
+
+        </activity>
     </application>
 
 </manifest>
