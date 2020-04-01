@@ -1,4 +1,5 @@
 # AndroidAttendanceProject
+Android Application project that i have build in kotlin below are the screenshots for that.
 ## WELCOME SCREEN                   
 <img src="media/image01.png" align="middle" height="700" width="400" ></a> 
 ## ADDING SUBJECT 
